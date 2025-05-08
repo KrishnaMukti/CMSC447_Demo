@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin – 4YP</title>
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    body { margin:0; padding-top:70px; font-family:Arial,sans-serif; }
+    .navbar { position:fixed; top:0; width:100%; z-index:1000; background:#1e1e1e; }
+    .split-screen { display:flex; min-height:calc(100vh - 70px); }
+    .lelf { width:25%; background:#1e1e1e; padding:20px; box-sizing:border-box; }
+    .right-half { width:75%; background:#2c3e50; padding:20px; box-sizing:border-box; color:#f1c40f; overflow-y:auto; }
+    .sidebar h2 { color:#f1c40f; margin-bottom:10px; }
+    .sidebar ul { list-style:none; padding:0; }
+    .sidebar li { margin:10px 0; }
+    .sidebar a { color:#f1c40f; text-decoration:none; cursor:pointer; }
+    .sidebar a.active { text-decoration:underline; }
+    section { display:none; }
+    section.active { display:block; }
+    label { display:block; margin-top:10px; }
+    input, textarea {
+      width:100%; padding:8px; margin-top:4px; border:1px solid #f1c40f; border-radius:4px;
+      background:#c7c8ca; color:#2c3e50; box-sizing:border-box;
+    }
+    button {
+      margin-top:12px; padding:10px 20px; border:none; border-radius:5px;
+      background:#f1c40f; color:black; cursor:pointer;
+    }
+    button:hover { background:#f39c12; }
+    .prereq-item { margin:6px 0; }
+    .prereq-item span { margin-right:10px; }
+    .prereq-item button { margin-left:10px; }
+    .prereq-row {
+      display:flex; align-items:center; gap:8px; margin-bottom:12px;
+    }
+    .prereq-row input[type="text"] { flex:1; }
+    .prereq-row label { white-space:nowrap; }
+  </style>
+</head>
+<body>
+
+<!-- Top Navbar -->
+<nav class="navbar">
+  <div class="navbar__container">
+    <a href="index.html" class="navbar__logo">
+      <img src="shield.png" alt="Shield" width="40" height="40"/>
+      UMBC
+    </a>
+    <div class="navbar__toggle" id="mobile-menu">☰</div>
+    <ul class="navbar__menu">
+      <li class="navbar__item"><a href="index.html" class="navbar__links">Home</a></li>
+      <li class="navbar__item"><a href="CMSC/cmsc_general.html" class="navbar__links">Computer Science</a></li>
+      <li class="navbar__item"><a href="CMPE/computer_engineering.html" class="navbar__links">Computer Engineering</a></li>
+      <li class="navbar__item"><a href="CHEME/chemical_engineering.html" class="navbar__links">Chemical Engineering</a></li>
+      <li class="navbar__item"><a href="MCE/mechanical_engineering.html" class="navbar__links">Mechanical Engineering</a></li>
+      <li class="navbar__item"><a href="IS/information_systems.html" class="navbar__links">Information Systems</a></li>
+      <li class="navbar__btn"><a href="CUSTOM/custom.html" class="button">Custom</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Split-screen: Sidebar + Main -->
+<div class="split-screen">
+  <!-- Sidebar -->
+  <div class="lelf">
+    <div class="sidebar">
+      <h2>Admin Actions</h2>
+      <ul>
+        <li><a data-target="searchSection" class="tab-link active">Search &amp; Update</a></li>
+        <li><a data-target="createSection" class="tab-link">Create New</a></li>
+        <li><a data-target="deleteSection" class="tab-link">Delete</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="right-half">
+    <!-- Search & Update -->
+    <section id="searchSection" class="active">
+      <h3>Search &amp; Update Course</h3>
+      <input type="text" id="searchCourseId" placeholder="Course ID (e.g. CMSC 201)">
+      <button onclick="searchCourse()">Search</button>
+
+      <div id="updateForm" style="display:none; margin-top:20px;">
+        <label>Course ID</label>
+        <input type="text" id="courseId" disabled>
+
+        <label>Title</label>
+        <input type="text" id="title">
+
+        <label>Credits</label>
+        <input type="number" id="credits">
+
+        <label>Description</label>
+        <textarea id="description" rows="3"></textarea>
+
+        <label>Prerequisites</label>
+        <div id="prereqList"></div>
+        <div class="prereq-row">
+          <input type="text" id="prereqCode" placeholder="e.g. MATH 150">
+          <label><input type="checkbox" id="prereqStrict" checked> Strict</label>
+          <button onclick="addPrereq()">Add Prereq</button>
+        </div>
+
+        <button onclick="updateCourse()">Save Changes</button>
+      </div>
+    </section>
+
+    <!-- Create New -->
+    <section id="createSection">
+      <h3>Create New Course</h3>
+      <label>Course ID</label>
+      <input type="text" id="newCourseId">
+
+      <label>Title</label>
+      <input type="text" id="newTitle">
+
+      <label>Credits</label>
+      <input type="number" id="newCredits">
+
+      <label>Description</label>
+      <textarea id="newDescription" rows="3"></textarea>
+
+      <label>Prerequisites</label>
+      <div id="newPrereqList"></div>
+      <div class="prereq-row">
+        <input type="text" id="newPrereqCode" placeholder="e.g. CMSC 201">
+        <label><input type="checkbox" id="newPrereqStrict" checked> Strict</label>
+        <button onclick="addNewPrereq()">Add Prereq</button>
+      </div>
+
+      <button onclick="createCourse()">Create Course</button>
+    </section>
+
+    <!-- Delete -->
+    <section id="deleteSection">
+      <h3>Delete Course</h3>
+      <input type="text" id="deleteCourseId" placeholder="Course ID">
+      <button onclick="deleteCourse()">Delete</button>
+    </section>
+  </div>
+</div>
+
+<script>
+  // Tab switching
+  document.querySelectorAll('.tab-link').forEach(link => {
+    link.addEventListener('click', () => {
+      document.querySelectorAll('.tab-link').forEach(l => l.classList.remove('active'));
+      link.classList.add('active');
+      const target = link.dataset.target;
+      document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
+      document.getElementById(target).classList.add('active');
+    });
+  });
+
+  // Prereq lists
+  let updatePrereqs = [], createPrereqs = [];
+  function renderPrereqs(list, containerId) {
+    const c = document.getElementById(containerId);
+    c.innerHTML = '';
+    list.forEach((p,i) => {
+      const d = document.createElement('div');
+      d.className = 'prereq-item';
+      d.innerHTML = `<span>${p.code} [${p.strict?'Strict':'Co-req'}]</span>
+                       <button onclick="${containerId==='prereqList'?'removePrereq':'removeNewPrereq'}(${i})">✕</button>`;
+      c.appendChild(d);
+    });
+  }
+  function addPrereq() {
+    const code = document.getElementById('prereqCode').value.trim();
+    const strict = document.getElementById('prereqStrict').checked;
+    if (!code) return alert('Enter a course code');
+    updatePrereqs.push({ code, strict });
+    document.getElementById('prereqCode').value = '';
+    renderPrereqs(updatePrereqs, 'prereqList');
+  }
+  function removePrereq(i) { updatePrereqs.splice(i,1); renderPrereqs(updatePrereqs,'prereqList'); }
+
+  function addNewPrereq() {
+    const code = document.getElementById('newPrereqCode').value.trim();
+    const strict = document.getElementById('newPrereqStrict').checked;
+    if (!code) return alert('Enter a course code');
+    createPrereqs.push({ code, strict });
+    document.getElementById('newPrereqCode').value = '';
+    renderPrereqs(createPrereqs, 'newPrereqList');
+  }
+  function removeNewPrereq(i) { createPrereqs.splice(i,1); renderPrereqs(createPrereqs,'newPrereqList'); }
+
+  // CRUD functions
+  async function searchCourse() {
+    const id = document.getElementById('searchCourseId').value.trim();
+    if (!id) return alert('Enter Course ID');
+    const res = await fetch(`/api/admin/${encodeURIComponent(id)}`);
+    if (!res.ok) return alert('Course not found');
+    const course = await res.json();
+    document.getElementById('updateForm').style.display = 'block';
+    document.getElementById('courseId').value = course.courseId;
+    document.getElementById('title').value = course.title;
+    document.getElementById('credits').value = course.credits;
+    document.getElementById('description').value = course.description;
+    updatePrereqs = (course.prereq||[]).flat().map(e => ({ code: e.code, strict: e.strict }));
+    renderPrereqs(updatePrereqs, 'prereqList');
+  }
+
+  async function updateCourse() {
+    const course = {
+      courseId: document.getElementById('courseId').value,
+      title: document.getElementById('title').value,
+      credits: parseInt(document.getElementById('credits').value,10),
+      description: document.getElementById('description').value,
+      prereq: updatePrereqs.map(p=>[{ code: p.code.trim().toUpperCase(), strict: p.strict }]),
+      equivData: []
+    };
+    const res = await fetch('/api/admin',{ method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(course) });
+    alert(res.ok?'Updated!':'Update failed');
+  }
+
+  async function createCourse() {
+    const course = {
+      courseId: document.getElementById('newCourseId').value.trim().toUpperCase(),
+      title: document.getElementById('newTitle').value,
+      credits: parseInt(document.getElementById('newCredits').value,10),
+      description: document.getElementById('newDescription').value,
+      prereq: createPrereqs.map(p=>[{ code:p.code.trim().toUpperCase(), strict:p.strict }]),
+      equivData: []
+    };
+    const res = await fetch('/api/admin',{ method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(course) });
+    alert(res.ok?'Created!':'Create failed');
+  }
+
+  async function deleteCourse() {
+    const id = document.getElementById('deleteCourseId').value.trim();
+    if (!id) return alert('Enter Course ID');
+    const res = await fetch(`/api/admin/${encodeURIComponent(id)}`,{ method:'DELETE' });
+    alert(res.ok?'Deleted!':'Delete failed');
+  }
+</script>
+</body>
+</html>

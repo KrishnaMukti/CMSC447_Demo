@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Planning</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            background-color: #000;
+            color: #fff;
+        }
+        .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #ffc107;
+        }
+        .navigation ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+        .navigation li {
+            margin-left: 20px;
+        }
+        .navigation a {
+            text-decoration: none;
+            color: #fff;
+        }
+        .navigation a:hover {
+            color: #ffc107;
+        }
+        .main-content {
+            display: flex;
+            gap: 20px;
+        }
+        .left-panel {
+            width: 35%;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+        .left-panel h2, .right-panel h2 {
+            color: #000;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        .pre-plan-buttons button {
+            background-color: #ffc107;
+            color: #000;
+            border: none;
+            padding: 10px 15px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .pre-plan-buttons button:hover {
+            background-color: #e0a800;
+        }
+        .right-panel {
+            width: 65%;
+            padding: 15px;
+        }
+        .course-entry-input {
+            margin-bottom: 20px;
+        }
+        .course-entry-input label {
+            display: block;
+            margin-bottom: 5px;
+            color: #000;
+        }
+        .course-entry-input input[type="text"] {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 60%;
+            margin-right: 10px;
+        }
+        .course-entry-input button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .course-entry-input button:hover {
+            background-color: #1e7e34;
+        }
+        .added-courses {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .added-courses h3 {
+            color: #000;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        .course-pill {
+            background-color: #f8f9fa;
+            border: 1px solid #ccc;
+            color: #333;
+            padding: 5px 10px;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            border-radius: 5px;
+            display: inline-block;
+        }
+        .course-pill .remove-button {
+            color: red;
+            cursor: pointer;
+            margin-left: 5px;
+            font-weight: bold;
+        }
+        .semester-plan {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+        .semester {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            text-align: center;
+        }
+        .semester h4 {
+            color: #ffc107;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        .semester-course {
+            background-color: #e9ecef;
+            border: 1px solid #adb5bd;
+            color: #333;
+            padding: 8px;
+            margin-bottom: 5px;
+            border-radius: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .semester-course .remove-button {
+            color: red;
+            cursor: pointer;
+            margin-left: 5px;
+            font-weight: bold;
+        }
+        .empty-slot {
+            border: 1px dashed #ccc;
+            padding: 8px;
+            margin-bottom: 5px;
+            border-radius: 4px;
+            color: #777;
+        }
+        .actions {
+            margin-top: 20px;
+        }
+        .actions button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-right: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .actions button:last-child {
+            margin-right: 0;
+        }
+        .actions button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Gold color */
+        .semester h4 {
+            color: #ffc107;
+        }
+
+        .header .logo{
+            color: #ffc107;
+        }
+        .navigation a:hover {
+            color: #ffc107;
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <div class="logo">UMBC</div>
+        <nav class="navigation">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Computer Science</a></li>
+                <li><a href="#">Computer Engineering</a></li>
+                <li><a href="#">Chemical Engineering</a></li>
+                <li><a href="#">Mechanical Engineering</a></li>
+                <li><a href="#">Information Systems</a></li>
+                <li><a href="#">Business Tech Admin</a></li>
+                <li><a href="#">Custom</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="main-content">
+        <div class="left-panel">
+            <h2>4 Year Plan</h2>
+            <h3>Pre-Loaded Options</h3>
+            <p>Click on the button below to load a pre-designed plan. You can edit it afterwards.</p>
+            <div class="pre-plan-buttons">
+                <button id="cmsc-btn">CMSC Pre-Plan</button>
+                <button id="CMPE-btn">CMPE</button>
+                <button id="CHEME-btn">CHEME</button>
+                <button id="MECHE-btn">MECHE</button>
+                <button id="IS-btn">IS</button>
+                <button id="BTA-btn">BTA</button>
+            </div>
+        </div>
+        <div class="right-panel">
+            <h2>Course Entry & Planning</h2>
+            <div class="course-entry-input">
+                <label for="courseSearchInput">Enter Course ID (e.g., CMSC 101):</label>
+                <input type="text" id="courseSearchInput" placeholder="e.g., CMSC 101">
+                <button id="searchBtn">Add Course</button>
+            </div>
+            <div class="added-courses">
+                <h3>Added Courses</h3>
+                <div id="box0">
+                </div>
+            </div>
+            <div class="semester-plan">
+                <div class="semester" id="box1">
+                    <h4>Semester 1</h4>
+                    <div class="box-items" id="box1Items">
+                    </div>
+                </div>
+                <div class="semester" id="box2">
+                    <h4>Semester 2</h4>
+                    <div class="box-items" id="box2Items">
+                    </div>
+                </div>
+                <div class="semester" id="box3">
+                    <h4>Semester 3</h4>
+                    <div class="box-items" id="box3Items">
+                    </div>
+                </div>
+                <div class="semester" id="box4">
+                    <h4>Semester 4</h4>
+                    <div class="box-items" id="box4Items">
+                    </div>
+                </div>
+                <div class="semester" id="box5">
+                    <h4>Semester 5</h4>
+                    <div class="box-items" id="box5Items">
+                    </div>
+                </div>
+                <div class="semester" id="box6">
+                    <h4>Semester 6</h4>
+                    <div class="box-items" id="box6Items">
+                    </div>
+                </div>
+                <div class="semester" id="box7">
+                    <h4>Semester 7</h4>
+                    <div class="box-items" id="box7Items">
+                    </div>
+                </div>
+                <div class="semester" id="box8">
+                    <h4>Semester 8</h4>
+                    <div class="box-items" id="box8Items">
+                    </div>
+                </div>
+            </div>
+            <div class="actions">
+                <button id="compareAcrossBtn">Check Plan</button>
+                <button id="Del_ALL">Clear All</button>
+                <button>Generate Report</button>
+            </div>
+            <div id="comparisonResult" class="compare-result"></div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.19.1/dist/sweetalert2.all.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.19.1/dist/sweetalert2.min.css" rel="stylesheet">
+<script>
+    Swal.fire({
+        title: 'Welcome to Custom Plans!',
+        timer: 1500,
+    })
+
+    let prelaoding = false;
+    let activeElement = null;
+    let count_curr_course = 0;
+
+    function handleDragStart(e) {
+        e.dataTransfer.setData('text/plain', e.target.id);
+        e.dataTransfer.effectAllowed = 'move';
+    }
+
+    function setActiveElement(el) {
+        if (activeElement) activeElement.classList.remove('active');
+        activeElement = el;
+        el.classList.add('active');
+    }
+
+    function handleDrop(e) {
+        e.preventDefault();
+        const id = e.dataTransfer.getData('text/plain');
+        const draggedEl = document.getElementById(id);
+        if (!draggedEl) return;
+        const items = e.currentTarget.querySelector('.box-items') || e.currentTarget;
+        items.appendChild(draggedEl);
+    }
+
+    function initDragAndDrop() {
+        document.querySelectorAll('.semester').forEach(box => {
+            box.addEventListener('dragover', e => {
+                e.preventDefault();
+                e.dataTransfer.dropEffect = 'move';
+            });
+            box.addEventListener('drop', handleDrop);
+        });
+
+        // Make  courses in  Added Courses section draggable
+        const addedCoursesBox = document.getElementById('box0');
+        if (addedCoursesBox) {
+            addedCoursesBox.addEventListener('dragover', e => {
+                e.preventDefault();
+                e.dataTransfer.dropEffect = 'move';
+            });
+            addedCoursesBox.addEventListener('drop', handleDrop);
+        }
+    }
+
+
+
+    function getCourseInfo(e) {
+        e.stopPropagation();
+
+        if (!activeElement) {
+            return Swal.fire({
+                icon: 'warning',
+                title: 'No Course Selected',
+                text: 'Please select a course to view its details.',
+            });
+        }
+
+        let courseData;
+        try {
+            courseData = JSON.parse(activeElement.dataset.course);
+        } catch (error) {
+            return Swal.fire({
+                icon: 'error',
+                title: 'Data Error',
+                text: 'Unable to parse course data. Please ensure the data format is correct.',
+            });
+        }
+
+        if (!courseData || !courseData.courseId) {
+            return Swal.fire({
+                icon: 'error',
+                title: 'Invalid Course Data',
+                text: 'Course data is missing required fields.',
+            });
+        }
+
+        const { courseId, title = "No title provided", credits = "N/A", prerequisites = [], description = "No description available", professors = [] } = courseData;
+
+        const prerequisitesString = prerequisites.length > 0
+            ? prerequisites.map(group => group.join(" OR ")).join(", ")
+            : "None";
+        const professorsString = professors && professors.length > 0
+            ? professors.join(", ")
+            : "N/A";
+
+        Swal.fire({
+            title: `Course Details: ${courseId}`,
+            html: `
+            <strong>Title:</strong> ${title}
+            <strong> , Credits:</strong> ${credits}<br>
+            <strong>Prerequisites:</strong> ${prerequisitesString}<br>
+            <strong>Professors:</strong>  ${professorsString}
+            <strong>Description:</strong>  ${description}
+         `,
+            icon: 'info',
+            confirmButtonText: 'Close',
+        });
+    }
+
+    function deleteElement(e) {
+        e.stopPropagation();
+        if (!activeElement) return alert('No course selected to delete.');
+        activeElement.remove();
+        activeElement = null;
+    }
+
+    async function fetchAndCreateInBox(courseId, boxId) {
+        try {
+            const res = await fetch(`/api/course/${encodeURIComponent(courseId.trim())}`);
+            if (!res.ok) {
+                const txt = await res.text();
+                console.warn(txt);
+                return alert(`Course "${courseId}" not found`);
+            }
+            const course = await res.json();
+            const el = document.createElement('div');
+            el.className = 'draggable semester-course';
+            el.textContent = course.courseId;
+            el.dataset.course = JSON.stringify(course);
+            el.id = `draggable-${course.courseId.replace(/\s+/g, '-')}-${Date.now()}`;
+            el.draggable = true;
+            el.addEventListener('dragstart', handleDragStart);
+            el.addEventListener('click', () => setActiveElement(el));
+
+
+            const container = document.getElementById(boxId);
+            const items = container.querySelector('.box-items') || container;
+            items.appendChild(el);
+
+            const removeButton = document.createElement('span');
+            removeButton.classList.add('remove-button');
+            removeButton.textContent = 'X';
+            removeButton.addEventListener('click', (event) => {
+                event.stopPropagation();
+                el.remove();
+                if (el === activeElement) activeElement = null;
+            });
+            el.appendChild(removeButton);
+
+
+        } catch (e) {
+            console.error(e);
+            alert('Error fetching course');
+        }
+    }
+
+    async function searchCourse() {
+        const id = document.getElementById('courseSearchInput').value.trim();
+        if (!id) return alert('Enter a Course ID');
+        await fetchAndCreateInBox(id, 'box0');
+        document.getElementById('courseSearchInput').value = '';
+    }
+
+    function clearAllCourses() {
+        if (confirm('Are you sure you want to clear all courses?')) {
+            for (let i = 0; i <= 8; i++) {
+                const box = document.getElementById(`box${i}Items`) || document.getElementById(`box${i}`);
+                if (box) {
+                    box.innerHTML = '';
+                }
+            }
+            document.getElementById('comparisonResult').textContent = '';
+        }
+    }
+
+
+    async function preplanCourses() {
+        const currentCourses = document.querySelectorAll('.semester-course');
+        if (currentCourses.length > 0 || document.getElementById('box0').children.length > 0) {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Plan Already Loaded',
+                text: 'Please clear the current plan before loading a new one.',
+            });
+            return;
+        }
+
+
+        const plan = [
+            { id: "CMSC 201", box: "box1" },
+            { id: "CMSC 202", box: "box2" },
+            { id: "CMSC 203", box: "box2" },
+            { id: "CMSC 341", box: "box3" }
+        ];
+        for (const { id, box } of plan) {
+            await fetchAndCreateInBox(id, box);
+        }
+    }
+
+    async function compareAcross() {
+        const resultEl = document.getElementById('comparisonResult');
+
+        const planBySemester = [];
+        for (let sem = 1; sem <= 8; sem++) {
+            const coursesInBox = Array.from(
+                document.querySelectorAll(`#box${sem} .semester-course`)
+            ).map(el => JSON.parse(el.dataset.course));
+            planBySemester.push(coursesInBox);
+        }
+
+        if (planBySemester.every(arr => arr.length === 0)) {
+            resultEl.textContent = '⚠️ Please add courses before comparing.';
+            return;
+        }
+
+        try {
+            const res = await fetch('/api/compare', {
+                method: 'POST',
+                headers: { 'Content-Type': 'json' },
+                body: JSON.stringify({ plan: planBySemester })
+            });
+            const { valid, message } = await res.json();
+            resultEl.textContent = valid
+                ? '✅ Your 4 year plan is valid!'
+                : `❌ ${message}`;
+        } catch (err) {
+            console.error(err);
+            resultEl.textContent = 'Error validating plan.';
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        initDragAndDrop();
+        document.getElementById('searchBtn').addEventListener('click', searchCourse);
+        document.getElementById('cmsc-btn').addEventListener('click', preplanCourses);
+        document.getElementById('compareAcrossBtn').addEventListener('click', compareAcross);
+        document.getElementById('Del_ALL').addEventListener('click', clearAllCourses);
+    });
+</script>
+</body>
+</html>

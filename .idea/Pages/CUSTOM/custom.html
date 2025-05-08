@@ -1,0 +1,1177 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>4YP</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        /* Basic styling */
+        body {
+            font-family: sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            max-width: 1350px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            /*border-radius:10px;box-shadow: 0 2px 5px rgba(0,0,0,0.3);border:2px solid rgba(0, 0, 0, 0.8); padding:10px;*/
+        }
+        /* Navbar styling */
+        .navbar {
+            position:initial;
+            top: 0;
+            left: 0;
+            width: 100%;
+            justify-content: space-between;
+            background-color: #1e1e1e;
+            color: #f1c40f;
+            padding: 5px 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+        .navbar__container { align-items: center; justify-content: space-evenly; max-width:1200px; margin:0 auto; padding:0 20px;grid-auto-flow: row; }
+        .navbar__menu { display:flex; list-style:none; padding:0;gap: 10px 0; }
+        .navbar__item { margin:0 10px; }
+        .navbar__links { color:#f1c40f; text-decoration:none; font-size:16px; }
+        .navbar__btn a { background-color:#f1c40f; color:black; padding:10px 20px; border-radius:5px; text-decoration:none; }
+        .navbar__btn a:hover { background-color:#f39c12; }
+
+        /* Split panels */
+        .main-content {
+            display: flex;
+            gap: 20px;
+        }
+        .left {
+            width: 25%;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+
+            /*border-radius:10px;box-shadow: 0 2px 5px rgba(0,0,0,0.3);border:2px solid rgba(0, 0, 0, 0.8); padding:10px;}*/
+        }
+        .left h2 {
+            color: #000;
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 30px;
+            border-radius:10px;box-shadow: 0 2px 5px rgba(0,0,0,0.3);border:2px solid rgba(0, 0, 0, 0.8); padding:10px;
+
+        }
+        .right h2{
+            color: #000;
+            margin-top: 0;
+            margin-bottom: 10px;
+            border-radius:10px;box-shadow: 0 2px 5px rgba(0,0,0,0.3);border:2px solid rgba(0, 0, 0, 0.8); padding:10px;
+
+        }
+        .right {
+            font-family: sans-serif;
+
+            width: 75%;
+            padding: 10px;
+            color:#f1c40f;
+            /*border-radius:10px;box-shadow: 0 2px 5px rgba(0,0,0,0.3);border:2px solid rgba(0, 0, 0, 0.8); padding:10px;}*/
+        }
+        .right p {
+            color: black;
+        }
+
+
+        /* Draggable items */
+        .draggable { width:135px; height:30px; background-color:lightskyblue; border:1px solid #000; margin:5px; text-align:center; line-height:30px; cursor:move; border-radius:5px; box-shadow:0 2px 5px rgba(0,0,0,0.2); color:black; }
+        .draggable.active { outline:2px solid lightgreen ;background-color:lightgreen; }
+        .draggable:hover { background-color:dodgerblue; }
+
+        /* Boxes */
+        .box { width:130px; min-height:50px; margin:30px; border:2px dashed rgba(0, 0, 0, 0.67); display:flex; flex-direction:column;flex-direction: row ; align-items:center; padding:10px; background-color: #f3f0f0; border-radius:10px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            color: rgba(145, 17, 17, 0.8);
+        }
+
+        #box1 { background-color: #F5F5F5FF; border-radius:10px;box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);border:2px solid black; padding:10px; color: black;}
+        #box2 { background-color: #F5F5F5FF; border-radius:10px;box-shadow: 0 2px 5px rgba(0,0,0,0.3);border:2px solid darkgreen  ; padding:10px; color: rgba(0, 0, 0, 0.8);}
+        #box3 { background-color: #F5F5F5FF; border-radius:10px;box-shadow: 0 2px 5px rgba(0,0,0,0.3);border:2px solid darkcyan ; padding:10px; color: rgba(0, 0, 0, 0.8);}
+        #box4 { background-color: #F5F5F5FF; border-radius:10px;box-shadow: 0 2px 5px rgba(0,0,0,0.3);border:2px solid  darkkhaki; padding:10px; color: rgba(0, 0, 0, 0.8);}
+        #box5 { background-color: #F5F5F5FF; border-radius:10px;box-shadow: 0 2px 5px rgba(0,0,0,0.3);border:2px solid  darkmagenta ; padding:10px; color: rgba(0, 0, 0, 0.8);}
+        #box6 { background-color: #F5F5F5FF; border-radius:10px;box-shadow: 0 2px 5px rgba(0,0,0,0.3);border:2px solid darkblue  ; padding:10px; color: rgba(0, 0, 0, 0.8);}
+        #box7 { background-color: #F5F5F5FF; border-radius:10px;box-shadow: 0 2px 5px rgba(0,0,0,0.3);border:2px solid  darkred ; padding:10px; color: rgba(0, 0, 0, 0.8);}
+        #box8 { background-color: #F5F5F5FF; border-radius:10px;box-shadow: 0 2px 5px rgba(0,0,0,0.3);border:2px solid darkmagenta ; padding:10px; color: rgba(0, 0, 0, 0.8);}
+        #boxPast{ display:flex; flex-wrap:wrap; justify-content:space-evenly; align-items:center; width:40%; min-height:145px; background-color: #F5F5F5;color:black; border-radius:10px; padding:10px;  border-radius:10px;box-shadow: 0 2px 5px rgba(0,0,0,0.3);border:2px solid #786acd; padding:10px; color: rgba(0, 0, 0, 0.8);}
+
+        #InfoBox { display:flex; flex-wrap:wrap; justify-content:space-evenly; align-items:center;  width:110px; min-height:100px; background-color:lightblue;color: black; border-radius:10px; padding:10px; color:black; border-radius:10px;box-shadow: 0 2px 5px rgba(0,0,0,0.3);border:2px solid rgba(0, 0, 0, 0.8); padding:10px; color: rgba(0, 0, 0, 0.8); }
+        #DelBox{ display:flex; flex-wrap:wrap; justify-content:space-evenly; align-items:center;  width:100px; min-height:100px; background-color: lightcoral;color: black; border-radius:10px; padding:10px; color:black; border-radius:10px;box-shadow: 0 2px 5px rgba(0,0,0,0.3);border:2px solid rgba(0, 0, 0, 0.8); padding:10px; color: rgba(0, 0, 0, 0.8); }
+        .box-items { flex:1; display:flex; flex-wrap:wrap; justify-content:center; width:100%; }
+
+        #box0 { display:flex; flex-wrap:wrap; justify-content:space-evenly; align-items:center; width:40%; min-height:145px; background-color: #F5F5F5;color:black; border-radius:10px; padding:10px;  border-radius:10px;box-shadow: 0 2px 5px rgba(0,0,0,0.3);border:2px solid darkslateblue; padding:10px; color: rgba(0, 0, 0, 0.8);}
+        .box-container { display:flex; flex-wrap:wrap; gap:30px; margin-top:20px; }
+        #container0 { display:flex; flex-wrap:wrap; gap:10px; margin-top:20px; }
+
+        /* Controls */
+        #searchCourseBox { margin:20px 0; display:flex; gap:10px; box-shadow: 0 2px 5px rgba(0,0,0,0.3);border:2px solid whitesmoke ; padding:10px; color: rgba(0, 0, 0, 0.8);}
+        #searchCourseBox input { flex:1; padding:10px; font-size:16px; border-radius:5px; border:1px solid goldenrod; }
+        #searchCourseBox button { padding:10px 20px; background-color: #28a745; color:black; border:none; border-radius:5px;   color: white;
+            cursor:pointer; }
+        #searchCourseBox button:hover { background-color:#1e7e34; }
+        .compare-btn { margin-top:20px; }
+        .compare-btn button { padding:10px 20px; background-color:#f1c40f; color:black; border:none; border-radius:5px; cursor:pointer; }
+        .compare-btn button:hover { background-color:#f39c12; }
+        .compare-result { margin-top:20px; font-size:16px; color:#f1c40f; font-weight:bold; }
+
+        .left-header { font-family:Arial,sans-serif; color: rgba(0, 0, 0, 0.8); margin-bottom:10px; }
+        .left-text { font-family:Verdana,sans-serif; color: rgba(0, 0, 0, 0.63); text-align:justify; }
+        .right-text { font-family:Verdana,sans-serif; color: rgba(0, 0, 0, 0.63); text-align:right; }
+
+        .cmsc-btn { margin-top:20px; display:grid; justify-content:center; align-items:first; width:max-content; gap:10px }
+        .cmsc-btn button {flex-wrap:wrap; grid-auto-rows: repeat(1, 1fr);gap:10px;justify-content:space-between; align-items:center;  padding:10px 20px; background-color:#f1c40f;margin:10px;color:black; border:black; border-radius:10px; cursor:pointer; }
+        .cmsc-btn button:hover { background-color:#f39c12; }
+        .cmsc-btn button:active { background-color: rgba(58, 246, 29, 0.56); }
+
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <nav class="navbar">
+        <div class="navbar__container">
+            <img src="../shield.png" alt="Shield" width="60" height="60">
+            <a href="#umbc" id="navbar__logo">UMBC</a>
+            <ul class="navbar__menu">
+                <li class="navbar__item"><a href="../index.html" class="navbar__links">Home</a></li>
+                <li class="navbar__item"><a href="../CMSC/cmsc_general.html" class="navbar__links">Computer Science</a></li>
+                <li class="navbar__item"><a href="../CMPE/cmpe_cyber_security.html" class="navbar__links">Computer Engineering</a></li>
+                <li class="navbar__item"><a href="../CHEME/cheme_traditional.html" class="navbar__links">Chemical Engineering</a></li>
+                <li class="navbar__item"><a href="../MCE/mechanical_engineering.html" class="navbar__links">Mechanical Engineering</a></li>
+                <li class="navbar__item"><a href="../IS/information_systems.html" class="navbar__links">Information Systems</a></li>
+                <li class="navbar__item"><a href="../BUS/business_tech_admin.html" class="navbar__links">Business Tech Admin</a></li>
+                <li class="navbar__btn"><a href="../CUSTOM/custom.html">Custom</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="main-content">
+        <div class="left">
+            <h2 class="left-header">Pre Loaded Plan</h2>
+            <p class="left-text">
+                Click on the button below to load the plan.
+                And you can edit it.
+            </p>
+            <div class="cmsc-btn">
+                <!--         have so  button action with sweet alert here like Generating CMSC coursecs-->
+                <button id="cmsc-G-btn">Computer Science  G  </button>
+                <button id="cmsc-DS-btn">Computer Science DS  </button>
+                <button id="cmsc-CS-btn">Computer Science CS </button>
+                <button id="cmsc-GD-btn">Computer Science GD </button>
+
+                <button id="CMPE-CS-btn">Computer Engineering CS  </button>
+                <button id="CMPE-CMM-btn">Computer Engineering  CMM</button>
+                <button id="CMPE-ES-btn">Computer Engineering  ES</button>
+
+                <button id="CHEME-btn">Chemical Engineering  </button>
+                <button id="MECHE-btn">Mechanical Engineering  </button>
+                <button id="IS-btn">Information Systems </button>
+                <button id="BTA-btn">Business Technology Administration </button>
+            </div>
+        </div>
+
+        <div class="right">
+            <h2 class="left-header">Course Entry</h2>
+            <div id="searchCourseBox">
+                <input type="text" id="courseSearchInput" placeholder="Enter Course ID (e.g., CMSC 101)">
+                <button id="searchBtn">Add Course</button>
+            </div>
+            <p><b>    &nbsp  &nbsp  Courses Created: &nbsp &nbsp  &nbsp &nbsp  &nbsp   &nbsp &nbsp &nbsp  &nbsp &nbsp  &nbsp &nbsp  &nbsp &nbsp  &nbsp  &nbsp &nbsp  &nbsp &nbsp &nbsp  &nbsp &nbsp  &nbsp &nbsp  &nbsp  &nbsp &nbsp  &nbsp &nbsp  &nbsp &nbsp  &nbsp  Past Courses</b></p>
+            <div class="box-container" id="container0">
+                <div class="box" id="box0"></div>
+                <div class="box" id="boxPast"></div>
+            </div>
+            <div class="box-container" id="container1">
+
+                <div class="box" id="box1"><p><b>Sem&nbsp1 </b></p><div class="box-items" id="box1Items"></div></div>
+                <div class="box" id="box2"><p><b>Sem&nbsp2  </b></p><div class="box-items" id="box2Items"></div></div>
+                <div class="box" id="box3"><p><b>Sem&nbsp3 </b></p><div class="box-items" id="box3Items"></div></div>
+                <div class="box" id="box4"><p><b>Sem&nbsp4 </b></p><div class="box-items" id="box4Items"></div></div>
+            </div>
+            <div class="box-container" id="container2">
+                <div class="box" id="box5"><p><b>Sem&nbsp5</b></p><div class="box-items" id="box5Items"></div></div>
+                <div class="box" id="box6"><p><b>Sem&nbsp6</b></p><div class="box-items" id="box6Items"></div></div>
+                <div class="box" id="box7"><p><b>Sem&nbsp7</b></p><div class="box-items" id="box7Items"></div></div>
+                <div class="box" id="box8"><p><b>Sem&nbsp8</b></p><div class="box-items" id="box8Items"></div></div>
+                <div class="box" id="DelBox"><p><b>Delete&nbspHere</b></p><div class="box-items" id="DelBoxItems"></div></div>
+                <div class="box" id="InfoBox"><p><b>Get&nbspInfo&nbspHere &nbsp &nbsp</b></p><div class="box-items" id="InfoBoxItems"></div></div>
+
+            </div>
+
+
+            <div class="box-container" style="margin-top: 20px; justify-content: center;">
+                <label for="trackSelect" style="font-weight: bold; margin-right: 10px;">Choose Specialization Track:</label>
+                <select id="trackSelect" style="padding: 10px; border-radius: 5px; border: 1px solid #ccc; font-size: 16px;">
+                    <option disabled selected>Select a Track</option>
+                    <optgroup label="Computer Science">
+                        <option>Computer Science - General</option>
+                        <option>Computer Science - CyberSecurity</option>
+                        <option>Computer Science - Data Science</option>
+                        <option>Computer Science - AI/Machine Learning</option>
+                        <option>Computer Science - Game Development</option>
+                    </optgroup>
+                    <optgroup label="Computer Engineering">
+                        <option>Computer Engineering - Cyber Security</option>
+                        <option>Computer Engineering - Communications</option>
+                        <option>Computer Engineering - Electronic Systems</option>
+                    </optgroup>
+                    <optgroup label="Chemical Engineering">
+                        <option>Chemical Engineering - General</option>
+                        <option>Chemical Engineering - Biotech/BioEngineering</option>
+                        <option>Chemical Engineering - Environmental Engineering and Sustainability</option>
+                    </optgroup>
+                    <optgroup label="Mechanical Engineering">
+                        <option>Mechanical Engineering - General</option>
+                    </optgroup>
+                    <optgroup label="Information Systems">
+                        <option>Information Systems - General</option>
+                    </optgroup>
+                </select>
+            </div>
+
+
+            <div class="compare-btn">
+                <button id="compareAcrossBtn">Check Plan</button>
+            </div>
+            <!--    <div class="del-btn">-->
+            <!--        <button id="Del_ALL">Delete ALL</button>-->
+            <!--    </div>-->
+            <div id="comparisonResult" class="compare-result"></div>
+        </div>
+    </div>
+</div>
+<script src="
+https://cdn.jsdelivr.net/npm/sweetalert2@11.19.1/dist/sweetalert2.all.min.js
+"></script>
+<link href="
+https://cdn.jsdelivr.net/npm/sweetalert2@11.19.1/dist/sweetalert2.min.css
+" rel="stylesheet">
+
+<script>
+    let prelaoding = false;
+    let activeElement = null;
+    let count_curr_course = 0;
+
+    function handleDragStart(e) {
+        e.dataTransfer.setData('text/plain', e.target.id);
+        e.dataTransfer.effectAllowed = 'move';
+    }
+
+    function setActiveElement(el) {
+        if (activeElement) activeElement.classList.remove('active');
+        activeElement = el;
+        el.classList.add('active');
+    }
+
+    function handleDrop(e) {
+        e.preventDefault();
+        const id = e.dataTransfer.getData('text/plain');
+        const draggedEl = document.getElementById(id);
+        if (!draggedEl) return;
+        if (e.currentTarget.id === 'DelBox') {
+            draggedEl.remove();
+            if (draggedEl === activeElement) activeElement = null;
+            return;
+        }
+        const items = e.currentTarget.querySelector('.box-items') || e.currentTarget;
+        items.appendChild(draggedEl);
+    }
+
+    function initDragAndDrop() {
+        document.querySelectorAll('.box').forEach(box => {
+            box.addEventListener('dragover', e => {
+                e.preventDefault();
+                e.dataTransfer.dropEffect = 'move';
+            });
+            box.addEventListener('drop', handleDrop);
+        });
+    }
+
+    function getCourseInfo(e) {
+        e.stopPropagation();
+        if (!activeElement) {
+            return Swal.fire({ icon: 'warning', title: 'No Course Selected', text: 'Please select a course to view its details.' });
+        }
+        let courseData;
+        try {
+            courseData = JSON.parse(activeElement.dataset.course);
+        } catch (error) {
+            return Swal.fire({ icon: 'error', title: 'Data Error', text: 'Unable to parse course data.' });
+        }
+        const { courseId, title = "No title", credits = "N/A", prereq = [], description = "No description" } = courseData;
+        const prerequisitesString = prereq.length > 0 ? prereq.map(group => group.map(e => e.code).join(" OR ")).join(", ") : "None";
+        Swal.fire({
+            title: `Course Details: ${courseId}`,
+            html: `<strong>Title:</strong> ${title}<strong>, Credits:</strong> ${credits}<br><strong>Prerequisites:</strong> ${prerequisitesString}<br><strong>Description:</strong> ${description}`,
+            icon: 'info', confirmButtonText: 'Close'
+        });
+    }
+
+    function deleteElement(e) {
+        e.stopPropagation();
+        if (!activeElement) {
+            return Swal.fire({
+                icon: 'warning',
+                title: 'No Course Selected',
+                text: 'Please select a course to view its details.',
+            });
+        }
+
+        if(activeElement) {
+            let courseData;
+            try {
+                courseData = JSON.parse(activeElement.dataset.course);
+            } catch (error) {
+                return Swal.fire({
+                    icon: 'error',
+                    title: 'Data Error',
+                    text: 'Unable to parse course data. Please ensure the data format is correct.',
+                });
+            }
+            if (!courseData || !courseData.courseId) {
+                return Swal.fire({
+                    icon: 'error',
+                    title: 'Invalid Course Data',
+                    text: 'Course data is missing required fields.',
+                });
+            }
+
+            // Extract course fields with fallback for missing data
+            const {
+                courseId,
+                title = "No title provided",
+                credits = "N/A",
+                prereq = [],             // ← new AND-of-ORs field
+                description = "No description available"
+            } = courseData;
+
+            // need to have this for some reason,
+            const prerequisitesString = prereq.length > 0
+                ? prereq
+                    .map(group => group.map(e => e.code).join(" OR "))
+                    .join(", ")
+                : "None";
+
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "Your file has been deleted.",
+                        icon: "success"
+                    });
+                    activeElement.remove();
+                    activeElement = null;
+
+                }
+            });
+
+
+            // ask if we want to delete this
+
+        }
+
+
+        //  activeElement.remove();
+        // activeElement = null;
+    }
+
+    async function fetchAndCreateInBox(courseId, boxId) {
+        try {
+            const res = await fetch(`/api/course/${encodeURIComponent(courseId.trim())}`);
+            if (!res.ok) {
+                const txt = await res.text();
+                console.warn(txt);
+                return swal.fire({
+                    icon: 'error',
+                    title: 'Course ID Not Found',
+                    // come back to fix text latter
+                    text: 'Please ensure the Course ID exists and it is in ' +
+                        'CAPTIAL LETTER (space) number format ' +
+                        'example: CMSC 201, MATH 150 '
+
+                });
+            }
+            const course = await res.json();
+            const el = document.createElement('div');
+            el.className = 'draggable';
+            el.textContent = course.courseId;
+            el.dataset.course = JSON.stringify(course);
+            el.id = `draggable-${course.courseId.replace(/\s+/g,'-')}-${Date.now()}`;
+            el.draggable = true;
+            el.addEventListener('dragstart', handleDragStart);
+            el.addEventListener('click', () => setActiveElement(el));
+            const container = document.getElementById(boxId);
+            const items = container.querySelector('.box-items') || container;
+            items.appendChild(el);
+        } catch (e) {
+            console.error(e);
+            alert('Error fetching course');
+        }
+    }
+
+    async function searchCourse() {
+        const id = document.getElementById('courseSearchInput').value.trim();
+        if (!id)  return swal.fire({
+            icon: 'warning',
+            title: 'Please Enter a Course ID',
+            // come back to fix text latter
+
+        });
+        await fetchAndCreateInBox(id, 'box0');
+    }
+
+    function countCoursesInBox(boxId) {
+        const box = document.getElementById(boxId);
+        if (!box) return 0;
+        return box.querySelectorAll('.draggable').length;
+    }
+
+    function countAllBoxes() {
+        let total = 0;
+        for (let i = 0; i <= 8; i++) {
+            total += countCoursesInBox(`box${i}`);
+        }
+        return total;
+    }
+
+    function deleteAllElements() {
+        const count = countAllBoxes();
+        alert(`There are ${count} courses in all boxes.`);
+        if (confirm(`Do you want to delete all ${count} courses?`)) {
+            document.querySelectorAll('.draggable').forEach(el => el.remove());
+            activeElement = null;
+        }
+    }
+    // CMPE CS
+    async function preplan_Cmpe_CS_Courses() {
+        const count = countAllBoxes();
+        if (count > 0) {
+            swal.fire({
+                icon: 'error',
+                title: 'Pre-Planned Courses Failed to Load',
+                text: 'Courses are already loaded! Please ensure the semesters are empty to avoid conflicts and confusion.',
+            });
+        } else {
+            swal.fire({
+                icon: 'success',
+                title: 'Computer Engineering Pre-Planned Courses Being Loaded',
+                timer: 2500,
+            });
+
+            const plan = [
+                // Year 1
+                { id :"MPLACE5", box:"boxPast" },
+
+                { id: "CMSC 201", box: "box1" },
+                { id: "MATH 151", box: "box1" },
+                { id: "PHYS 121", box: "box1" },
+                { id: "ENGL 100", box: "box1" },
+
+                { id: "CMSC 202", box: "box2" },
+                { id: "MATH 152", box: "box2" },
+                { id: "CMPE 212", box: "box2" },
+                { id: "ENES 101", box: "box2" },
+
+                // Year 2
+                { id: "MATH 251", box: "box3" },
+                { id: "PHYS 122", box: "box3" },
+                { id: "CMSC 203", box: "box3" },
+                { id: "AH 1", box: "box3" },
+                { id: "SS 1", box: "box3" },
+
+                { id: "CMPE 306", box: "box4" },
+                { id: "MATH 225", box: "box4" },
+                { id: "CMPE 310", box: "box4" },
+                { id: "CMSC 341", box: "box4" },
+
+                // Year 3
+                { id: "CMPE 314", box: "box5" },
+                { id: "CMPE 311", box: "box5" },
+                { id: "MATH 221", box: "box5" },
+                { id: "SCI ELECT", box: "box5" },
+                { id: "AH 2", box: "box5" },
+
+                { id: "CMPE 320", box: "box6" },
+                { id: "CMSC 421", box: "box6" },
+                { id: "CMPE 316", box: "box6" },
+                { id: "CMPE 349", box: "box6" },
+                { id: "SS 2", box: "box6" },
+
+                // Year 4
+                { id: "CMPE 413", box: "box7" },
+                { id: "CMSC 411", box: "box7" },
+                { id: "CMPE 450", box: "box7" },
+                { id: "CMSC 426", box: "box7" },
+                { id: "AH 3", box: "box7" },
+
+                { id: "CMPE 451", box: "box8" },
+                { id: "CMSC 481", box: "box8" },
+                { id: "CYBR ELE", box: "box8" },
+                { id: "LANG 201", box: "box8" },
+            ];
+
+            for (const { id, box } of plan) {
+                await fetchAndCreateInBox(id, box);
+            }
+        }
+    }
+    //CMPE CMM
+    async function preplan_Cmpe_CMM_Courses() {
+        const count = countAllBoxes();
+        if (count > 0) {
+            swal.fire({
+                icon: 'error',
+                title: 'Pre-Planned Courses Failed to Load',
+                text: 'Courses are already loaded! Please ensure the semesters are empty to avoid conflicts and confusion.',
+            });
+        } else {
+            swal.fire({
+                icon: 'success',
+                title: 'Pre-Planned Courses Being Loaded for CMPE and CMSC',
+                timer: 2500,
+            });
+
+            const plan = [
+                { id :"MPLACE5", box:"boxPast" },
+
+                // Year 1 - Fall
+                { id: "CMSC 201", box: "box1" },
+                { id: "MATH 151", box: "box1" },
+                { id: "PHYS 121", box: "box1" },
+                { id: "ENGL 100", box: "box1" },
+
+                // Year 1 - Spring
+                { id: "CMSC 202", box: "box2" },
+                { id: "MATH 152", box: "box2" },
+                { id: "CMPE 212", box: "box2" },
+                { id: "ENES 101", box: "box2" },
+
+                // Year 2 - Fall
+                { id: "MATH 251", box: "box3" },
+                { id: "PHYS 122", box: "box3" },
+                { id: "CMSC 203", box: "box3" },
+                { id: "AH 1", box: "box3" },
+                { id: "SS 1", box: "box3" },
+
+                // Year 2 - Spring
+                { id: "CMPE 306", box: "box4" },
+                { id: "MATH 225", box: "box4" },
+                { id: "CMPE 310", box: "box4" },
+                { id: "CMSC 341", box: "box4" },
+
+                // Year 3 - Fall
+                { id: "CMPE 314", box: "box5" },
+                { id: "CMPE 311", box: "box5" },
+                { id: "CMPE 323", box: "box5" },
+                { id: "MATH 221", box: "box5" },
+                { id: "SCI ELECT", box: "box5" },
+
+                // Year 3 - Spring
+                { id: "CMPE 320", box: "box6" },
+                { id: "CMPE 330", box: "box6" },
+                { id: "CMPE 349", box: "box6" },
+                { id: "AH 2", box: "box6" },
+                { id: "CULTURE", box: "box6" },
+
+                // Year 4 - Fall
+                { id: "CMSC 411", box: "box7" },
+                { id: "CMPE 450", box: "box7" },
+                { id: "ELEC A1", box: "box7" },
+                { id: "ELEC A2", box: "box7" },
+                { id: "AH 3", box: "box7" },
+                { id: "SS 2", box: "box7" },
+
+                // Year 4 - Spring
+                { id: "CMSC 421", box: "box8" },
+                { id: "CMPE 451", box: "box8" },
+                { id: "ELEC A/B", box: "box8" },
+                { id: "LANG 201", box: "box8" },
+                { id: "SS 3", box: "box8" },
+            ];
+
+            for (const { id, box } of plan) {
+                await fetchAndCreateInBox(id, box);
+            }
+        }
+    }
+    // CMPE ES
+    async function preplan_Cmpe_ES_Courses() {
+        const count = countAllBoxes();
+        if (count > 0) {
+            swal.fire({
+                icon: 'error',
+                title: 'Pre-Planned Courses Failed to Load',
+                text: 'Courses are already loaded! Please ensure the semesters are empty to avoid conflicts and confusion.',
+            });
+        } else {
+            swal.fire({
+                icon: 'success',
+                title: 'Pre-Planned Courses Being Loaded for CMPE and CMSC',
+                timer: 2500,
+            });
+
+            const plan = [
+
+                { id :"MPLACE5", box:"boxPast" },
+
+                // Year 1 - Fall
+                { id: "CMSC 201", box: "box1" },
+                { id: "PHYS 121", box: "box1" },
+                { id: "MATH 151", box: "box1" },
+                { id: "ENGL 100", box: "box1" },
+
+                // Year 1 - Spring
+                { id: "CMSC 202", box: "box2" },
+                { id: "MATH 152", box: "box2" },
+                { id: "CMPE 212", box: "box2" },
+                { id: "ENES 101", box: "box2" },
+
+                // Year 2 - Fall
+                { id: "MATH 251", box: "box3" },
+                { id: "PHYS 122", box: "box3" },
+                { id: "CMSC 203", box: "box3" },
+                { id: "AH 1", box: "box3" },
+                { id: "SS 1", box: "box3" },
+
+                // Year 2 - Spring
+                { id: "CMPE 306", box: "box4" },
+                { id: "MATH 225", box: "box4" },
+                { id: "CMPE 310", box: "box4" },
+                { id: "CMSC 341", box: "box4" },
+
+                // Year 3 - Fall
+                { id: "CMPE 314", box: "box5" },
+                { id: "CMPE 311", box: "box5" },
+                { id: "MATH 221", box: "box5" },
+                { id: "SCI ELECT", box: "box5" },
+                { id: "AH 2", box: "box5" },
+
+                // Year 3 - Spring
+                { id: "CMPE 320", box: "box6" },
+                { id: "CMSC 421", box: "box6" },
+                { id: "CMPE 316", box: "box6" },
+                { id: "CMPE 349", box: "box6" },
+                { id: "SS 2", box: "box6" },
+
+                // Year 4 - Fall
+                { id: "CMPE 413", box: "box7" },
+                { id: "CMSC 411", box: "box7" },
+                { id: "CMPE 450", box: "box7" },
+                { id: "ELEC A1", box: "box7" },
+                { id: "AH 3", box: "box7" },
+                { id: "SS 3", box: "box7" },
+
+                // Year 4 - Spring
+                { id: "CMPE 451", box: "box8" },
+                { id: "ELEC A2", box: "box8" },
+                { id: "ELEC A/B", box: "box8" },
+                { id: "LANG 201", box: "box8" },
+                { id: "CULTURE", box: "box8" },
+            ];
+
+            for (const { id, box } of plan) {
+                await fetchAndCreateInBox(id, box);
+            }
+        }
+    }
+    // CMSC
+    async function preplan_CMSC_G_Courses() {
+        const count= countAllBoxes();
+        if(count>0){
+            swal.fire({
+                icon: 'error',
+                title: 'Pre Planned Courses Falied to Load',
+                text: 'Cources Already loaded ! Please ensure the Semesters are empty,to avoid conflicts and confusion.',
+
+            })
+        }else {
+            swal.fire({
+                icon: 'success',
+                title: 'Computer Science Pre Planed Cources Being Loaded',
+                timer: 2500,
+            })
+            const plan = [
+                { id :"MPLACE5", box:"boxPast" },
+                { id: "CMSC 201", box: "box1" },
+                { id: "MATH 151", box: "box1" },
+                { id: "LANG 201", box: "box1" },
+                { id: "ENGL 100", box: "box1" },
+
+                { id: "CMSC 202", box: "box2" },
+                { id: "MATH 152", box: "box2" },
+                { id: "CMSC 203", box: "box2" },
+                { id: "AH 1", box: "box2" },
+                { id: "SS 1", box: "box2" },
+                // year 2
+                { id: "CMSC 341", box: "box3" },
+                { id: "CMSC 331", box: "box3" },
+                { id: "SCI SEQ 1", box: "box3" },
+                { id: "SS 2", box: "box3" },
+                { id: "ELECTIVE 1", box: "box3" },
+
+                { id: "CMSC 313", box: "box4" },
+                { id: "MATH 221", box: "box4" },
+                { id: "SS 2", box: "box4" },
+                { id: "SCI SEQ 2", box: "box4" },
+                { id: "SCI LAB", box: "box4" },
+
+                // 3 rd year
+                { id: "CMSC 304", box: "box5" },
+                { id: "CMSC 411", box: "box5" },
+                { id: "CMSC 4XX", box: "box5" },
+                { id: "STAT 355", box: "box5" },
+
+                { id: "CMSC 421", box: "box6" },
+                { id: "CMSC 4XX", box: "box6" },
+                { id: "CMSC 4XX", box: "box6" },
+                { id: "AH 2", box: "box6" },
+                { id: "CULTURE", box: "box6" },
+
+                // year 4
+                { id: "CMSC 441", box: "box7" },
+                { id: "CMSC 447", box: "box7" },
+                { id: "UL ELECT", box: "box7" },
+                { id: "ELECTIVE 2", box: "box7" },
+                { id: "ELECTIVE 3", box: "box7" },
+
+                { id: "ELECTIVE 4", box: "box8" },
+                { id: "ELECTIVE 5", box: "box8" },
+                { id: "ELECTIVE 6", box: "box8" },
+                { id: "CMSC 4XX", box: "box8" },
+                { id: "CMSC 4XX", box: "box8" },
+
+            ];
+
+            for (const {id, box} of plan) {
+                await fetchAndCreateInBox(id, box);
+            }
+            // need awheay to count all the element and get current items
+        }
+    }
+    async function preplan_CMSC_DS_Courses() {
+        const count = countAllBoxes();
+        if (count > 0) {
+            swal.fire({
+                icon: 'error',
+                title: 'Pre-Planned Courses Failed to Load',
+                text: 'Courses are already loaded! Please ensure the semesters are empty to avoid conflicts and confusion.',
+            });
+        } else {
+            swal.fire({
+                icon: 'success',
+                title: 'Computer Science Pre-Planned Courses Being Loaded',
+                timer: 2500,
+            });
+
+            const plan = [
+                { id :"MPLACE5", box:"boxPast" },
+
+                // Year One - Fall Semester
+                { id: "CMSC 201", box: "box1" },
+                { id: "MATH 151", box: "box1" },
+                { id: "LANG 201", box: "box1" },
+                { id: "ENGL 100", box: "box1" },
+
+                // Year One - Spring Semester
+                { id: "CMSC 202", box: "box2" },
+                { id: "CMSC 203", box: "box2" },
+                { id: "MATH 152", box: "box2" },
+                { id: "AH 1", box: "box2" },
+                { id: "SS 1", box: "box2" },
+
+                // Year Two - Fall Semester
+                { id: "CMSC 331", box: "box3" },
+                { id: "CMSC 341", box: "box3" },
+                { id: "SCI SEQ 1", box: "box3" },
+                { id: "SS 2", box: "box3" },
+                { id: "ELECTIVE 1", box: "box3" },
+
+                // Year Two - Spring Semester
+                { id: "CMSC 313", box: "box4" },
+                { id: "MATH 221", box: "box4" },
+                { id: "SCI SEQ 2", box: "box4" },
+                { id: "SCI LAB", box: "box4" },
+                { id: "SS 3", box: "box4" },
+
+                // Year Three - Fall Semester
+                { id: "CMSC 304", box: "box5" },
+                { id: "CMSC 411", box: "box5" },
+                { id: "CMSC 4XX", box: "box5" },
+                { id: "STAT 355", box: "box5" },
+
+                // Year Three - Spring Semester
+                { id: "CMSC 491", box: "box6" },
+                { id: "DATA ELEC 1", box: "box6" },
+                { id: "CMSC 421", box: "box6" },
+                { id: "AH 2", box: "box6" },
+                { id: "CULTURE", box: "box6" },
+
+                // Year Four - Fall Semester
+                { id: "CMSC 441", box: "box7" },
+                { id: "CMSC 447", box: "box7" },
+                { id: "CMSC 4XX", box: "box7" },
+                { id: "ELECTIVE 2", box: "box7" },
+                { id: "ELECTIVE 3", box: "box7" },
+
+                // Year Four - Spring Semester
+                { id: "DATA ELEC 2", box: "box8" },
+                { id: "DATA ELEC 3", box: "box8" },
+                { id: "ELECTIVE 4", box: "box8" },
+                { id: "ELECTIVE 5", box: "box8" },
+                { id: "ELECTIVE 6", box: "box8" },
+            ];
+
+            for (const { id, box } of plan) {
+                await fetchAndCreateInBox(id, box);
+            }
+        }
+    }
+    async function preplan_CMSC_CS_Courses() {
+        const count = countAllBoxes();
+        if (count > 0) {
+            swal.fire({
+                icon: 'error',
+                title: 'Pre-Planned Courses Failed to Load',
+                text: 'Courses are already loaded! Please ensure the semesters are empty to avoid conflicts and confusion.',
+            });
+        } else {
+            swal.fire({
+                icon: 'success',
+                title: 'Computer Science Pre-Planned Courses Being Loaded',
+                timer: 2500,
+            });
+
+            const plan = [
+                { id: "MPLACE5", box: "boxPast" },
+
+                // Year One - Fall Semester
+                { id: "CMSC 201", box: "box1" },
+                { id: "MATH 151", box: "box1" },
+                { id: "LANG 201", box: "box1" },
+                { id: "ENGL 100", box: "box1" },
+
+                // Year One - Spring Semester
+                { id: "CMSC 202", box: "box2" },
+                { id: "CMSC 203", box: "box2" },
+                { id: "MATH 152", box: "box2" },
+                { id: "AH 1", box: "box2" },
+                { id: "SS 1", box: "box2" },
+
+                // Year Two - Fall Semester
+                { id: "CMSC 331", box: "box3" },
+                { id: "CMSC 341", box: "box3" },
+                { id: "SCI SEQ 1", box: "box3" },
+                { id: "SS 2", box: "box3" },
+                { id: "ELECTIVE 1", box: "box3" },
+
+                // Year Two - Spring Semester
+                { id: "CMSC 313", box: "box4" },
+                { id: "MATH 221", box: "box4" },
+                { id: "SCI SEQ 2", box: "box4" },
+                { id: "SCI LAB", box: "box4" },
+                { id: "SS 3", box: "box4" },
+
+                // Year Three - Fall Semester
+                { id: "CMSC 304", box: "box5" },
+                { id: "CMSC 411", box: "box5" },
+                { id: "CMSC 421", box: "box5" },
+                { id: "STAT 355", box: "box5" },
+
+                // Year Three - Spring Semester
+                { id: "CMSC 426", box: "box6" },
+                { id: "CYBR ELECT1", box: "box6" },
+                { id: "CYBR ELECT2", box: "box6" },
+                { id: "AH 2", box: "box6" },
+                { id: "CULTURE", box: "box6" },
+
+                // Year Four - Fall Semester
+                { id: "CMSC 441", box: "box7" },
+                { id: "CMSC 447", box: "box7" },
+                { id: "UL ELECT", box: "box7" },
+                { id: "ELECTIVE 2", box: "box7" },
+                { id: "ELECTIVE 3", box: "box7" },
+
+                // Year Four - Spring Semester
+                { id: "CMSC 4XX", box: "box8" },
+                { id: "CMSC 487", box: "box8" },
+                { id: "ELECTIVE 4", box: "box8" },
+                { id: "ELECTIVE 5", box: "box8" },
+                { id: "ELECTIVE 6", box: "box8" },
+            ];
+
+            for (const { id, box } of plan) {
+                await fetchAndCreateInBox(id, box);
+            }
+        }
+    }
+    async function preplan_CMSC_GD_Courses() {
+        const count = countAllBoxes();
+        if (count > 0) {
+            swal.fire({
+                icon: 'error',
+                title: 'Pre-Planned Courses Failed to Load',
+                text: 'Courses are already loaded! Please ensure the semesters are empty to avoid conflicts and confusion.',
+            });
+        } else {
+            swal.fire({
+                icon: 'success',
+                title: 'Computer Science Pre-Planned Courses Being Loaded',
+                timer: 2500,
+            });
+
+            const plan = [
+                { id: "MPLACE5", box: "boxPast" },
+
+                // Year One - Fall Semester
+                { id: "CMSC 201", box: "box1" },
+                { id: "MATH 151", box: "box1" },
+                { id: "LANG 201", box: "box1" },
+                { id: "ENGL 100", box: "box1" },
+
+                // Year One - Spring Semester
+                { id: "CMSC 202", box: "box2" },
+                { id: "MATH 152", box: "box2" },
+                { id: "CMSC 203", box: "box2" },
+                { id: "AH 1", box: "box2" },
+                { id: "SS 1", box: "box2" },
+
+                // Year Two - Fall Semester
+                { id: "CMSC 331", box: "box3" },
+                { id: "CMSC 341", box: "box3" },
+                { id: "PHYS 121", box: "box3" },
+                { id: "SS 2", box: "box3" },
+
+                // Year Two - Spring Semester
+                { id: "CMSC 313", box: "box4" },
+                { id: "MATH 221", box: "box4" },
+                { id: "SCI SEQ 1", box: "box4" },
+                { id: "SCI LAB", box: "box4" },
+                { id: "ELECTIVE 1", box: "box4" },
+
+                // Year Three - Fall Semester
+                { id: "CMSC 304", box: "box5" },
+                { id: "CMSC 411", box: "box5" },
+                { id: "CMSC 435", box: "box5" },
+                { id: "STAT 355", box: "box5" },
+                { id: "SS 3", box: "box5" },
+
+                // Year Three - Spring Semester
+                { id: "CMSC 421", box: "box6" },
+                { id: "CMSC 4XX", box: "box6" },
+                { id: "CMSC 471", box: "box6" },
+                { id: "AH 2", box: "box6" },
+                { id: "CULTURE", box: "box6" },
+
+                // Year Four - Fall Semester
+                { id: "CMSC 441", box: "box7" },
+                { id: "CMSC 447", box: "box7" },
+                { id: "SCI ELECT", box: "box7" },
+                { id: "UL ELECT", box: "box7" },
+                { id: "ELECTIVE 2", box: "box7" },
+
+                // Year Four - Spring Semester
+                { id: "CMSC 493", box: "box8" },
+                { id: "CMSC 4XX", box: "box8" },
+                { id: "ELECTIVE 3", box: "box8" },
+                { id: "ELECTIVE 4", box: "box8" },
+                { id: "ELECTIVE 5", box: "box8" },
+
+            ];
+
+            for (const { id, box } of plan) {
+                await fetchAndCreateInBox(id, box);
+            }
+        }
+    }
+    // MECHE
+    async function preplan_MECHE_Courses() {
+        const count = countAllBoxes();
+        if (count > 0) {
+            swal.fire({
+                icon: 'error',
+                title: 'Pre-Planned Courses Failed to Load',
+                text: 'Courses are already loaded! Please ensure the semesters are empty to avoid conflicts and confusion.',
+            });
+        } else {
+            swal.fire({
+                icon: 'success',
+                title: 'Mechanical Engineering Pre-Planned Courses Being Loaded',
+                timer: 2500,
+            });
+
+            const plan = [
+                { id: "MPLACE5", box: "boxPast" },
+
+                // Year One - Fall Semester
+                { id: "CHEM 101", box: "box1" },
+                { id: "MATH 151", box: "box1" },
+                { id: "ENES 101", box: "box1" },
+                { id: "ENGL 100", box: "box1" },
+                { id: "AH 1", box: "box1" },
+
+                // Year One - Spring Semester
+                { id: "CHEM 102", box: "box2" },
+                { id: "CHEM 102L", box: "box2" },
+                { id: "PHYS 121", box: "box2" },
+                { id: "MATH 152", box: "box2" },
+                { id: "ENME 110", box: "box2" },
+
+                // Year Two - Fall Semester
+                { id: "ENME 220", box: "box3" },
+                { id: "STAT 355", box: "box3" },
+                { id: "MATH 251", box: "box3" },
+                { id: "PHYS 122", box: "box3" },
+
+                // Year Two - Spring Semester
+                { id: "ENME 221", box: "box4" },
+                { id: "MATH 225", box: "box4" },
+                { id: "ENME 204", box: "box4" },
+                { id: "ENME 217", box: "box4" },
+                { id: "AH 2", box: "box4" },
+
+                // Year Three - Fall Semester
+                { id: "CMPE 306", box: "box5" },
+                { id: "ENME 320", box: "box5" },
+                { id: "ENME 303", box: "box5" },
+                { id: "ENME 301", box: "box5" },
+                { id: "SS 1", box: "box5" },
+
+                // Year Three - Spring Semester
+                { id: "ENME 304", box: "box6" },
+                { id: "ENME 321", box: "box6" },
+                { id: "ENME 360", box: "box6" },
+                { id: "ENME 332L", box: "box6" },
+                { id: "LANG 201", box: "box6" },
+
+                // Year Four - Fall Semester
+                { id: "ENME 403", box: "box7" },
+                { id: "ENME 432L", box: "box7" },
+                { id: "ENME 4XX DGN", box: "box7" },
+                { id: "SCI/TECH ELECT", box: "box7" },
+                { id: "AH 3", box: "box7" },
+                { id: "SS 2", box: "box7" },
+
+                // Year Four - Spring Semester
+                { id: "ENME 482L", box: "box8" },
+                { id: "ENME 444", box: "box8" },
+                { id: "ENME 4XX TECH", box: "box8" },
+                { id: "SS 3", box: "box8" },
+                { id: "CULTURE", box: "box8" },
+            ];
+
+            for (const { id, box } of plan) {
+                await fetchAndCreateInBox(id, box);
+            }
+        }
+    }
+
+
+    async function compareAcross() {
+        console.log("compareAcross() button clicked");
+
+        const resultEl = document.getElementById('comparisonResult');
+        const planBySemester = [];
+
+        // 🟡 Get selected track each time
+        const trackSelect = document.getElementById('trackSelect');
+        const selectedTrack = trackSelect?.value || "";
+
+        if (!selectedTrack || selectedTrack === "Select a Track") {
+            return Swal.fire({
+                icon: 'warning',
+                title: 'No Track Selected',
+                text: 'Please select a specialization track before checking.'
+            });
+        }
+
+        // 🟡 Add Past Courses (Semester 0)
+        const pastCourses = Array.from(document.querySelectorAll(`#boxPast .draggable`))
+            .map(el => JSON.parse(el.dataset.course));
+        planBySemester.push(pastCourses);
+
+        // 🟡 Add Semesters 1–8
+        for (let sem = 1; sem <= 8; sem++) {
+            const courses = Array.from(document.querySelectorAll(`#box${sem} .draggable`))
+                .map(el => JSON.parse(el.dataset.course));
+            planBySemester.push(courses);
+        }
+
+        if (planBySemester.every(arr => arr.length === 0)) {
+            return Swal.fire({
+                icon: 'warning',
+                title: 'No Courses',
+                text: 'Please add courses before comparing your plan.'
+            });
+        }
+
+        try {
+            const response = await fetch('/api/compare', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ plan: planBySemester, track: selectedTrack })
+            });
+
+            const { valid, message } = await response.json();
+
+            resultEl.textContent = valid ? '✅ Your 4 year plan is valid!' : `❌ ${message}`;
+            Swal.fire({
+                icon: valid ? 'success' : 'error',
+                title: valid ? 'Valid Plan!' : 'Invalid Plan',
+                text: message
+            });
+        } catch (err) {
+            console.error('Error calling compare API:', err);
+            Swal.fire({ icon: 'error', title: 'Comparison failed', text: 'Check the console for more info.' });
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        initDragAndDrop();
+        document.getElementById('searchBtn').addEventListener('click', searchCourse);
+        // CMSC
+        document.getElementById('cmsc-G-btn').addEventListener('click', preplan_CMSC_G_Courses);
+        document.getElementById('cmsc-DS-btn').addEventListener('click', preplan_CMSC_DS_Courses);
+        document.getElementById('cmsc-CS-btn').addEventListener('click', preplan_CMSC_CS_Courses);
+        document.getElementById('cmsc-GD-btn').addEventListener('click', preplan_CMSC_GD_Courses);
+        // CMPE
+        document.getElementById('CMPE-CS-btn').addEventListener('click', preplan_Cmpe_CS_Courses);
+        document.getElementById('CMPE-CMM-btn').addEventListener('click', preplan_Cmpe_CMM_Courses);
+        document.getElementById('CMPE-ES-btn').addEventListener('click', preplan_Cmpe_ES_Courses);
+        // Cheme
+
+        // MECHE
+        document.getElementById('MECHE-btn').addEventListener('click', preplan_MECHE_Courses);
+
+        // IS
+        // BTA
+
+
+        document.getElementById('compareAcrossBtn').addEventListener('click', compareAcross);
+        document.getElementById('DelBox').addEventListener('click', deleteElement);
+        document.getElementById('InfoBox').addEventListener('click', getCourseInfo);
+        // Optional: enable full wipe
+        const delAll = document.getElementById('Del_ALL');
+        if (delAll) delAll.addEventListener('click', deleteAllElements);
+    });
+</script>
+</body>
+</html>

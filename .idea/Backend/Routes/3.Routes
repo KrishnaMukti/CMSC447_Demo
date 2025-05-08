@@ -1,0 +1,8 @@
+Routes
+Role: Map URL paths to controller methods.
+Why: Decouples your URL structure (e.g. /api/course/:id) from the implementation of what happens when that URL is hit.
+Makes it easy to see all your endpoints in one place.
+File:
+CourseRoutes.js — router.get('/:courseId', getCourseById), etc.
+
+
