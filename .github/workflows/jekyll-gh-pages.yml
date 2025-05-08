@@ -23,17 +23,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # Copy site files from .idea/pages to the output folder
-      - name: Prepare Site for Deployment
-        run: |
-          mkdir -p ./output
-          cp -r .idea/Pages/* ./output/
-
-      # Upload the prepared files as an artifact
+      # Upload the content from .idea/Pages
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./output # The directory to upload
+          path: .idea/Pages # Directory containing index.html and other site files
 
   # Deployment job
   deploy:
