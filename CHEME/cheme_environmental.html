@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>4YP</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fdb515;
+        }
+        .container {
+            width: 100%;
+            max-width: 1500px;
+            margin-top: 2400px;
+            margin-bottom: 10px;
+            background: rgb(255, 255, 255);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2, h3 {
+            text-align: center;
+            color: rgba(0, 0, 0, 0.8);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            color: rgba(0, 0, 0, 0.77);
+        }
+
+        th, td {
+            border: 1px solid rgba(0, 0, 0, 0.71);
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #black;
+            color: rgba(0, 0, 0, 0.8);
+        }
+
+        select {
+            width: 100%;
+            padding: 5px;
+        }
+        .right-half {
+            padding: 20px;
+            width: 80%;
+            background-color: rgb(253, 181, 21);
+        }
+    </style>
+
+</head>
+<body>
+
+<!-- Navbar Section -->
+<nav class="navbar">
+    <div class="navbar__container">
+        <img src="../shield.png" alt="Shield" width="60" height="60">
+        <a href="#umbc" id="navbar__logo">UMBC</a>
+        <div class="navbar__toggle" id="mobile-menu">
+        </div>
+        <ul class="navbar__menu">
+            <li class="navbar__item">
+                <a href="../index.html" class="navbar__links" id="home-page">Home</a>
+            </li>
+            <li class="navbar__item">
+                <a href="../CMSC/cmsc_general.html" class="navbar__links" id="computer_science-page">Computer Science</a>
+            </li>
+            <li class="navbar__item">
+                <a href="../CMPE/cmpe_cyber_security.html" class="navbar__links" id="computer_engineering-page">Computer Engineering</a>
+            </li>
+            <li class="navbar__item">
+                <a href="../CHEME/cheme_traditional.html" class="navbar__links" id="chemical_engineering-page">Chemical Engineering</a>
+            </li>
+            <li class="navbar__item">
+                <a href="../MCE/mechanical_engineering.html" class="navbar__links" id="mechanical_engineering-page">Mechanical Engineering</a>
+            </li>
+            <li class="navbar__item">
+                <a href="../IS/information_systems.html" class="navbar__links" id="information_systems-page">Information Systems</a>
+            </li>
+            <li class="navbar__item">
+                <a href="../BUS/business_tech_admin.html" class="navbar__links" id="business_tech_admin-page">Business Technology Administration</a>
+            </li>
+            <li class="navbar__btn">
+                <a href="../CUSTOM/custom.html" class="button" id="custom">Custom</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Sidebar Navigation -->
+<div class="split-screen">
+    <div class="lelf">
+        <div class="sidebar">
+            <h2>Tracks</h2>
+            <ul>
+                <li><a href="cheme_traditional.html">Traditional</a></li>
+                <li><a href="cheme_biotech.html">Biotechnology/Bioengineering</a></li>
+                <li><a href="cheme_environmental.html">Environmental Engineering and Sustainability</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="right-half">
+        <div class="container">
+            <h1>Chemical Engineering - Environmental Engineering and Sustainability Track</h1>
+
+            <h2>Year One</h2>
+            <h3>Fall</h3>
+            <div class="table-container">
+                <table>
+                    <tr>
+                        <th style="width:30%">Course</th>
+                        <th style="width:10%">Credits</th>
+                        <th style="width:10%">Difficulty</th>
+                        <th style="width:60%">Pre-requisites</th>
+                    </tr>
+                    <tr>
+                        <th>CHEM 101 - Princ. of Chemistry</th>
+                        <th>4</th>
+                        <th>4/5</th>
+                        <th>MATH 106, MATH 150, MATH 151, or MATH 155</th>
+                    </tr>
+                    <tr>
+                        <th>MATH 151 - Calculus I</th>
+                        <th>4</th>
+                        <th>4/5</th>
+                        <th>MATH 150 or Score of 5 on the Math Placement Test</th>
+                    </tr>
+                    <tr>
+                        <th>ENES 101 - Intro. to Engineering</th>
+                        <th>3-4</th>
+                        <th>2/5</th>
+                        <th>MATH 150, MATH 151 or MATH 152</th>
+                    </tr>
+                    <tr>
+                        <th>ENGLISH - GEP</th>
+                        <th>3</th>
+                        <th>3/5</th>
+                        <th>Varies</th>
+                    </tr>
+                    <tr>
+                        <th>Arts & Humanities - GEP</th>
+                        <th>3</th>
+                        <th>Varies</th>
+                        <th>Varies</th>
+                    </tr>
+                </table>
+            </div>
+
+            <h3>Spring</h3>
+            <div class="table-container">
+                <table>
+                    <tr>
+                        <th style="width:30%">Course</th>
+                        <th style="width:10%">Credits</th>
+                        <th style="width:10%">Difficulty</th>
+                        <th style="width:60%">Pre-requisites</th>
+                    </tr>
+                    <tr>
+                        <th>CHEM 102 - Princ. of Chem. II</th>
+                        <th>4</th>
+                        <th>4/5</th>
+                        <th>CHEM 101</th>
+                    </tr>
+                    <tr>
+                        <th>CHEM 102L - Introduction to Chemistry Lab</th>
+                        <th>2</th>
+                        <th>3/5</th>
+                        <th>CHEM 101</th>
+                    </tr>
+                    <tr>
+                        <th>PHYS 121 - Introductory Physic I</th>
+                        <th>4</th>
+                        <th>3/5</th>
+                        <th>MATH 151</th>
+                    </tr>
+                    <tr>
+                        <th>MATH 152 - Calculus II</th>
+                        <th>4</th>
+                        <th>4/5</th>
+                        <th>MATH 151 or Score of 5 on the Math Placement Test</th>
+                    </tr>
+                    <tr>
+                        <th>ENME 110 - Statics</th>
+                        <th>3</th>
+                        <th>2/5</th>
+                        <th>MATH 151</th>
+                    </tr>
+                </table>
+            </div>
+
+            <h2>Year Two</h2>
+            <h3>Fall</h3>
+            <div class="table-container">
+                <table>
+                    <tr>
+                        <th style="width:30%">Course</th>
+                        <th style="width:10%">Credits</th>
+                        <th style="width:10%">Difficulty</th>
+                        <th style="width:60%">Pre-requisites</th>
+                    </tr>
+                    <tr>
+                        <th>ENCH 215 - Chemical Engineering Analysis</th>
+                        <th>3</th>
+                        <th>3/5</th>
+                        <th>CHEM 102 and ENES 101</th>
+                    </tr>
+                    <tr>
+                        <th>CHEM 351 - Organic Chemistry I</th>
+                        <th>3</th>
+                        <th>5/5</th>
+                        <th>CHEM 102</th>
+                    </tr>
+                    <tr>
+                        <th>MATH 251 - Multivariable Calculus</th>
+                        <th>4</th>
+                        <th>3/5</th>
+                        <th>MATH 142 or MATH 152</th>
+                    </tr>
+                    <tr>
+                        <th>PHYS 122 - Introductory Physic II</th>
+                        <th>4</th>
+                        <th>5/5</th>
+                        <th>PHYS 121 and MATH 152</th>
+                    </tr>
+                    <tr>
+                        <th>Arts & Humanities GEP</th>
+                        <th>3</th>
+                        <th>Varies</th>
+                        <th>Varies</th>
+                    </tr>
+                </table>
+            </div>
+
+            <h3>Spring</h3>
+            <div class="table-container">
+                <table>
+                    <tr>
+                        <th style="width:30%">Course</th>
+                        <th style="width:10%">Credits</th>
+                        <th style="width:10%">Difficulty</th>
+                        <th style="width:60%">Pre-requisites</th>
+                    </tr>
+                    <tr>
+                        <th>ENCH 225L - Chemical Engineering Problem Solving & Experiment Design Lab</th>
+                        <th>4</th>
+                        <th>3/5</th>
+                        <th>ENGL 200 and ENCH 215</th>
+                    </tr>
+                    <tr>
+                        <th>CHEM 352 - Organic Chemistry II</th>
+                        <th>3</th>
+                        <th>4/5</th>
+                        <th>CHEM 351 and CHEM 102</th>
+                    </tr>
+                    <tr>
+                        <th>MATH 225 - Introduction to Differential Equations</th>
+                        <th>3</th>
+                        <th>3/5</th>
+                        <th>MATH 142 or MATH 152</th>
+                    </tr>
+                    <tr>
+                        <th>ENCH 210 - Intro to Environmental Engineering</th>
+                        <th>3</th>
+                        <th>3/5</th>
+                        <th>CHEM 102, ENES 101, and MATH 152</th>
+                    </tr>
+                    <tr>
+                        <th>Arts & Humanities - GEP</th>
+                        <th>3</th>
+                        <th>Varies</th>
+                        <th>Varies</th>
+                    </tr>
+                </table>
+            </div>
+
+            <h2>Year Three</h2>
+            <h3>Fall</h3>
+            <div class="table-container">
+                <table>
+                    <tr>
+                        <th style="width:30%">Course</th>
+                        <th style="width:10%">Credits</th>
+                        <th style="width:10%">Difficulty</th>
+                        <th style="width:60%">Pre-requisites</th>
+                    </tr>
+                    <tr>
+                        <th>ENCH 300 - Chemical Process Thermodynamics</th>
+                        <th>3</th>
+                        <th>3/5</th>
+                        <th>CHEM 351, ENCH 215, and MATH 251</th>
+                    </tr>
+                    <tr>
+                        <th>ENCH 425 - Transport I: Fluids</th>
+                        <th>3</th>
+                        <th>3/5</th>
+                        <th>ENCH 215 and MATH 225</th>
+                    </tr>
+                    <tr>
+                        <th>ENCH 410 - Environmental Chemistry</th>
+                        <th>3</th>
+                        <th>2/5</th>
+                        <th>CHEM 102, MATH 225, (Taking ENCH 300)</th>
+                    </tr>
+                    <tr>
+                        <th>Foreign Language - GEP</th>
+                        <th>4</th>
+                        <th>Varies</th>
+                        <th>Varies</th>
+                    </tr>
+                    <tr>
+                        <th>Social Science - GEP</th>
+                        <th>3</th>
+                        <th>Varies</th>
+                        <th>Varies</th>
+                    </tr>
+                </table>
+            </div>
+
+            <h3>Spring</h3>
+            <div class="table-container">
+                <table>
+                    <tr>
+                        <th style="width:30%">Course</th>
+                        <th style="width:10%">Credits</th>
+                        <th style="width:10%">Difficulty</th>
+                        <th style="width:60%">Pre-requisites</th>
+                    </tr>
+                    <tr>
+                        <th>ENCH 427 - Transport Processes II: Mass Transfer</th>
+                        <th>3</th>
+                        <th>3/5</th>
+                        <th>ENCH 425</th>
+                    </tr>
+                    <tr>
+                        <th>ENCH 440 - Chemical Engineering Kinetics</th>
+                        <th>3</th>
+                        <th>3/5</th>
+                        <th>ENCH 300, ENCH 425, CHEM 301 and CHEM 303</th>
+                    </tr>
+                    <tr>
+                        <th>ENCH 442 - Chemical Engineering Systems Analysis</th>
+                        <th>3</th>
+                        <th>3/5</th>
+                        <th>ENCH 225L, ENCH 300, ENCH 425, and MATH 225</th>
+                    </tr>
+                    <tr>
+                        <th>CHEM 303 - Phys. Chemistry for Biochemical Sci.</th>
+                        <th>3</th>
+                        <th>2/5</th>
+                        <th>CHEM 351, MATH 152, (PHYS 112 or PHYS 122)</th>
+                    </tr>
+                    <tr>
+                        <th>Social Science GEP</th>
+                        <th>3</th>
+                        <th>Varies</th>
+                        <th>Varies</th>
+                    </tr>
+                </table>
+            </div>
+
+            <h2>Year Four</h2>
+            <h3>Fall</h3>
+            <div class="table-container">
+                <table>
+                    <tr>
+                        <th style="width:30%">Course</th>
+                        <th style="width:10%">Credits</th>
+                        <th style="width:10%">Difficulty</th>
+                        <th style="width:60%">Pre-requisites</th>
+                    </tr>
+                    <tr>
+                        <th>ENCH 444 - Process Engr. Economics & Design</th>
+                        <th>3</th>
+                        <th>2/5</th>
+                        <th>ENCH 427, ENCH 440, and ENCH 445</th>
+                    </tr>
+                    <tr>
+                        <th>ENCH 445 - Separation Processes</th>
+                        <th>3</th>
+                        <th>2/5</th>
+                        <th>ENCH 427</th>
+                    </tr>
+                    <tr>
+                        <th>ENCH 414 - Environmental Biological Processes</th>
+                        <th>3</th>
+                        <th>2/5</th>
+                        <th>ENCH 427 and ENCH 440</th>
+                    </tr>
+                    <tr>
+                        <th>ENCH 437L - Chemical Engineering Lab</th>
+                        <th>3</th>
+                        <th>3/5</th>
+                        <th>ENCH 225L, ENCH 427, ENCH 440, and ENGL 100</th>
+                    </tr>
+                    <tr>
+                        <th>Culture GEP</th>
+                        <th>3</th>
+                        <th>Varies</th>
+                        <th>Varies</th>
+                    </tr>
+                </table>
+            </div>
+
+            <h3>Spring</h3>
+            <div class="table-container">
+                <table>
+                    <tr>
+                        <th style="width:30%">Course</th>
+                        <th style="width:10%">Credits</th>
+                        <th style="width:10%">Difficulty</th>
+                        <th style="width:60%">Pre-requisites</th>
+                    </tr>
+                    <tr>
+                        <th>ENCH 446 - Process Engr. Economics & Design II</th>
+                        <th>4</th>
+                        <th>2/5</th>
+                        <th>ENCH 444, ENCH 445, and ENCH 442</th>
+                    </tr>
+                    <tr>
+                        <th>ENCH 412 - Environmental Physicochem. Processes</th>
+                        <th>3</th>
+                        <th>3/5</th>
+                        <th>Taking ENCH 427</th>
+                    </tr>
+                    <tr>
+                        <th>ENCH XXX Chemical Engineering Elective	</th>
+                        <th>3</th>
+                        <th>Varies</th>
+                        <th>Varies</th>
+                    </tr>
+                    <tr>
+                        <th>ENCH XXX Chemical Engineering Elective	</th>
+                        <th>3</th>
+                        <th>Varies</th>
+                        <th>Varies</th>
+                    </tr>
+                    <tr>
+                        <th>Social Science GEP</th>
+                        <th>3</th>
+                        <th>Varies</th>
+                        <th>Varies</th>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+</div>
+
+
+
+</body>
+</html>

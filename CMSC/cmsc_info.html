@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>4YP</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        /* Sidebar Styling */
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            background-color: #333;
+            color: white;
+            position: relative;
+            padding: 20px;
+            margin-top: 50px; /* Moves the sidebar down */
+
+        }
+
+        .sidebar h2 {
+            text-align: center;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .sidebar ul li a {
+            color: white;
+            text-decoration: none;
+            display: block;
+        }
+
+        .sidebar ul li:hover {
+            background-color: #575757;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar Section -->
+<nav class="navbar">
+    <div class="navbar__container">
+        <img src="../shield.png" alt="Shield" width="60" height="60">
+        <a href="#umbc" id="navbar__logo">UMBC</a>
+        <div class="navbar__toggle" id="mobile-menu">
+        </div>
+        <ul class="navbar__menu">
+            <li class="navbar__item">
+                <a href="../index.html" class="navbar__links" id="home-page">Home</a>
+            </li>
+            <li class="navbar__item">
+                <a href="../about.html" class="navbar__links" id="about-page">About</a>
+            </li>
+            <li class="navbar__item">
+                <a href="../CMSC/cmsc_general.html" class="navbar__links" id="computer_science-page">Computer Science</a>
+            </li>
+            <li class="navbar__item">
+                <a href="../CMPE/computer_engineering.html" class="navbar__links" id="computer_engineering-page">Computer Engineering</a>
+            </li>
+            <li class="navbar__item">
+                <a href="../CHEME/chemical_engineering.html" class="navbar__links" id="chemical_engineering-page">Chemical Engineering</a>
+            </li>
+            <li class="navbar__item">
+                <a href="../MCE/mechanical_engineering.html" class="navbar__links" id="mechanical_engineering-page">Mechanical Engineering</a>
+            </li>
+            <li class="navbar__item">
+                <a href="../IS/information_systems.html" class="navbar__links" id="information_systems-page">Information Systems</a>
+            </li>
+            <li class="navbar__item">
+                <a href="../BUS/business_tech_admin.html" class="navbar__links" id="business_tech_admin-page">Business Technology Administration</a>
+            </li>
+            <li class="navbar__btn">
+                <a href="../CUSTOM/custom.html" class="button" id="custom">Custom</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Sidebar Navigation -->
+<div class="split-screen">
+    <div class="lelf">
+        <div class="sidebar">
+            <h2>Tracks</h2>
+            <ul>
+                <li><a href="cmsc_info.html">Info</a></li>
+                <li><a href="cmsc_general.html">General</a></li>
+                <li><a href="cmsc_cyber_security.html">Cyber Security</a></li>
+                <li><a href="cmsc_data_science.html">Data Science</a></li>
+                <li><a href="cmsc_ai_ml.html">Artificial Intelligence / Machine Learning</a></li>
+                <li><a href="cmsc_game_dev.html">Game Development</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<div class="right-half">
+    <h1 class="left-header">Information: </h1>
+    <p class="description">
+
+        CMPE must choos a path to complete the 4 year plan.
+    </p>
+
+    <!--    <iframe id="CMSC_General"
+                title="Inline Frame Example"
+                width="1200"
+                height="700"
+                src="CMSC4YR.pdf">
+        </iframe>-->
+
+</div>
+
+
+
+<!-- Footer Section -->
+<footer class="footer">
+    <div class="footer__container">
+        <p>&copy; 2024 UMBC. All rights reserved.</p>
+    </div>
+</footer>
+
+</body>
+</html>
