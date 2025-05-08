@@ -167,6 +167,8 @@
                 And you can edit it.
             </p>
             <div class="cmsc-btn">
+                <button id="start">Start</button>
+
                 <!--         have so  button action with sweet alert here like Generating CMSC coursecs-->
                 <button id="cmsc-G-btn">Computer Science  G  </button>
                 <button id="cmsc-DS-btn">Computer Science DS  </button>
@@ -1640,6 +1642,10 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.19.1/dist/sweetalert2.min.css
         }
     }
 
+    function start(){
+        src="../Backend/Controllers/app.js"
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
         initDragAndDrop();
         document.getElementById('searchBtn').addEventListener('click', searchCourse);
@@ -1672,6 +1678,9 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.19.1/dist/sweetalert2.min.css
         document.getElementById('compareAcrossBtn').addEventListener('click', compareAcross);
         document.getElementById('DelBox').addEventListener('click', deleteElement);
         document.getElementById('InfoBox').addEventListener('click', getCourseInfo);
+        document.getElementById('start').addEventListener('click', start);
+
+
         // Optional: enable full wipe
         const delAll = document.getElementById('Del_ALL');
         if (delAll) delAll.addEventListener('click', deleteAllElements);
