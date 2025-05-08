@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS Connection Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #testOutput p {
+            margin: 0.5em 0;
+        }
+    </style>
+</head>
+<body>
+<h1>JS Connection Test</h1>
+<div id="testOutput">
+    <!-- Test data will be displayed here -->
+</div>
+
+<!-- Load your classes.js file from the Backend folder -->
+<script src="/CSMC-447-Section-2--Team-4/.idea/Backend/Models/classes.js"></script>
+<!-- Inline script to test that the classes are loaded -->
+<script>
+    console.log("Inline script is running!");
+
+    // Check if the Course class is defined
+    if (typeof Course === "undefined") {
+        console.error("Course is not defined. Check the path to classes.js and ensure there are no syntax errors.");
+        document.getElementById('testOutput').innerHTML = "<p style='color:red;'>Error: Course class not loaded.</p>";
+    } else {
+        // Sample course data:
+        // "CMSC 102; intro to computer science 2; 3; CMSC 101, TEST 101; Second CMSC intro class; John Smith, Jane Doe;"
+        const sampleData = "CMSC 102; intro to computer science 2; 3; CMSC 101, TEST 101; Second CMSC intro class; John Smith, Jane Doe;";
+
+        // Create a Course object using the sample data
+        const testCourse = new Course(sampleData);
+
+        // Create a Plan object that includes this course (Plan expects an array of course strings)
+        const testPlan = new Plan("Test Plan", 15, [sampleData]);
+
+        // Display the properties of the Course and Plan objects on the page
+        const outputDiv = document.getElementById('testOutput');
+        outputDiv.innerHTML = `
+        <p><strong>Course Code:</strong> ${testCourse.name}</p>
+        <p><strong>Course Title:</strong> ${testCourse.title}</p>
+        <p><strong>Credits:</strong> ${testCourse.credits}</p>
+        <p><strong>Description:</strong> ${testCourse.description}</p>
+        <p><strong>Prerequisites:</strong> ${testCourse.prereq.join(', ')}</p>
+        <p><strong>Professors:</strong> ${testCourse.professors.join(', ')}</p>
+        <hr />
+        <p><strong>Plan Name:</strong> ${testPlan.name}</p>
+        <p><strong>Number of Courses in Plan:</strong> ${testPlan.list.length}</p>
+      `;
+        console.log("Course object:", testCourse);
+        console.log("Plan object:", testPlan);
+    }
+</script>
+</body>
+</html>

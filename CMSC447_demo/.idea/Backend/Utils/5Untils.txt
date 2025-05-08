@@ -1,0 +1,10 @@
+Role: Shared helper functions and pure business logic that aren’t tied to HTTP or database specifics.
+
+
+Why: Things like checkCourseSequence or checkPrerequisites live here so they
+can be tested in isolation and used both client and server‑side
+
+
+
+Files:
+DataAlgo.js  prerequisite‑checking algorithm.
