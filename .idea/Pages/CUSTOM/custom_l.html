@@ -155,7 +155,7 @@
                 <li class="navbar__item"><a href="../MCE/mechanical_engineering.html" class="navbar__links">Mechanical Engineering</a></li>
                 <li class="navbar__item"><a href="../IS/information_systems.html" class="navbar__links">Information Systems</a></li>
                 <li class="navbar__item"><a href="../BUS/business_tech_admin.html" class="navbar__links">Business Tech Admin</a></li>
-                <li class="navbar__btn"><a href="../CUSTOM/custom.html">Custom</a></li>
+                <li class="navbar__btn"><a href="custom.html">Custom</a></li>
             </ul>
         </div>
     </nav>
@@ -178,13 +178,6 @@
                 <button id="CMPE-ES-btn">Computer Engineering  ES</button>
 
                 <button id="CHEME-btn">Chemical Engineering  </button>
-<!--                <button id="CHEME-BT-btn">Chemical BT Engineering  </button>-->
-<!--                <button id="CHEME-EES-btn">Chemical EES Engineering  </button>-->
-
-
-
-
-
                 <button id="MECHE-btn">Mechanical Engineering  </button>
                 <button id="IS-btn">Information Systems </button>
                 <button id="BSA-btn">Business Technology Administration </button>
@@ -220,37 +213,36 @@
             </div>
 
 
-<!--            <div class="box-container" style="margin-top: 20px; justify-content: center;">-->
-<!--                <label for="trackSelect" style="font-weight: bold; margin-right: 10px;">Choose Specialization Track:</label>-->
-<!--                <select id="trackSelect" style="padding: 10px; border-radius: 5px; border: 1px solid #ccc; font-size: 16px;">-->
-<!--                    <option disabled selected>Select a Track</option>-->
-<!--                    <optgroup label="Computer Science">-->
-<!--                        <option>Computer Science - General</option>-->
-<!--                        <option>Computer Science - CyberSecurity</option>-->
-<!--                        <option>Computer Science - Data Science</option>-->
-<!--                        <option>Computer Science - AI/Machine Learning</option>-->
-<!--                        <option>Computer Science - Game Development</option>-->
-<!--                    </optgroup>-->
-<!--                    <optgroup label="Computer Engineering">-->
-<!--                        <option>Computer Engineering - Cyber Security</option>-->
-<!--                        <option>Computer Engineering - Communications</option>-->
-<!--                        <option>Computer Engineering - Electronic Systems</option>-->
-<!--                    </optgroup>-->
-<!--                    <optgroup label="Chemical Engineering">-->
-<!--                        <option>Chemical Engineering - General</option>-->
-<!--                        <option>Chemical Engineering - Biotech/BioEngineering</option>-->
-<!--                        <option>Chemical Engineering - Environmental Engineering and Sustainability</option>-->
-<!--                    </optgroup>-->
-<!--                    <optgroup label="Mechanical Engineering">-->
-<!--                        <option>Mechanical Engineering - General</option>-->
-<!--                    </optgroup>-->
-<!--                    <optgroup label="Information Systems">-->
-<!--                        <option>Information Systems - General</option>-->
-<!--                    </optgroup>-->
-<!--                </select>-->
-<!--            </div>-->
+            <div class="box-container" style="margin-top: 20px; justify-content: center;">
+                <label for="trackSelect" style="font-weight: bold; margin-right: 10px;">Choose Specialization Track:</label>
+                <select id="trackSelect" style="padding: 10px; border-radius: 5px; border: 1px solid #ccc; font-size: 16px;">
+                    <option disabled selected>Select a Track</option>
+                    <optgroup label="Computer Science">
+                        <option>Computer Science - General</option>
+                        <option>Computer Science - CyberSecurity</option>
+                        <option>Computer Science - Data Science</option>
+                        <option>Computer Science - AI/Machine Learning</option>
+                        <option>Computer Science - Game Development</option>
+                    </optgroup>
+                    <optgroup label="Computer Engineering">
+                        <option>Computer Engineering - Cyber Security</option>
+                        <option>Computer Engineering - Communications</option>
+                        <option>Computer Engineering - Electronic Systems</option>
+                    </optgroup>
+                    <optgroup label="Chemical Engineering">
+                        <option>Chemical Engineering - General</option>
+                        <option>Chemical Engineering - Biotech/BioEngineering</option>
+                        <option>Chemical Engineering - Environmental Engineering and Sustainability</option>
+                    </optgroup>
+                    <optgroup label="Mechanical Engineering">
+                        <option>Mechanical Engineering - General</option>
+                    </optgroup>
+                    <optgroup label="Information Systems">
+                        <option>Information Systems - General</option>
+                    </optgroup>
+                </select>
+            </div>
 
-            <div class="box-container" style="margin-top: 20px; justify-content: center;">    <label for="trackSelect" style="font-weight: bold; margin-right: 10px;">Choose Specialization Track:</label>    <select id="trackSelect" style="padding: 10px; border-radius: 5px; border: 1px solid #ccc; font-size: 16px;">        <option disabled selected>Select a Track</option>        <optgroup label="Computer Science">            <option>Computer Science - General</option>            <option>Computer Science - CyberSecurity</option>            <option>Computer Science - Data Science</option>            <option>Computer Science - AI/Machine Learning</option>            <option>Computer Science - Game Development</option>        </optgroup>        <optgroup label="Computer Engineering">            <option>Computer Engineering - Cyber Security</option>            <option>Computer Engineering - Communications</option>            <option>Computer Engineering - Electronic Systems</option>        </optgroup>        <optgroup label="Chemical Engineering">            <option>Chemical Engineering - General</option>            <option>Chemical Engineering - Biotech/BioEngineering</option>            <option>Chemical Engineering - Environmental Engineering and Sustainability</option>        </optgroup>        <optgroup label="Mechanical Engineering">            <option>Mechanical Engineering - General</option>        </optgroup>        <optgroup label="Information Systems">            <option>Information Systems - General</option>        </optgroup>        <optgroup label="Business Technology Administration">            <option>Business Technology Administration - B.A.</option>        </optgroup>    </select></div>
 
             <div class="compare-btn">
                 <button id="compareAcrossBtn">Check Plan</button>
@@ -1381,191 +1373,6 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.19.1/dist/sweetalert2.min.css
         }
     }
 
-    async function preplan_CHME_G_Courses() {
-        const count = countAllBoxes();
-        if (count > 0) {
-            swal.fire({
-                confirmButtonColor: '#fdb515',
-                customClass: {
-                    confirmButton: 'custom-confirm-button' // Add custom class
-                },
-                icon: 'error',
-                title: 'Pre Planned Courses Failed to Load',
-                text: 'Courses Already Loaded! Please ensure the Semesters are empty to avoid conflicts and confusion.',
-            });
-        } else {
-            swal.fire({
-                confirmButtonColor: '#fdb515',
-                customClass: {
-                    confirmButton: 'custom-confirm-button' // Add custom class
-                },
-                icon: 'success',
-                title: 'All Four Years Courses Being Loaded',
-                timer: 4500,
-            });
-
-            const plan = [
-                // Year One
-                // Fall Semester
-                { id: "MPLACE5", box: "boxPast" },
-
-                { id: "CHEM 101", box: "box1" },
-                { id: "MATH 151", box: "box1" },
-                { id: "ENES 101", box: "box1" },
-                { id: "ENGL 100", box: "box1" },
-                { id: "AH 1", box: "box1" },
-
-                // Spring Semester
-                { id: "CHEM 102", box: "box2" },
-                { id: "CHEM 102L", box: "box2" },
-                { id: "PHYS 121", box: "box2" },
-                { id: "MATH 152", box: "box2" },
-                { id: "ENME 110", box: "box2" },
-
-                // Year Two
-                // Fall Semester
-                { id: "ENCH 215", box: "box3" },
-                { id: "CHEM 351", box: "box3" },
-                { id: "MATH 251", box: "box3" },
-                { id: "PHYS 122", box: "box3" },
-                { id: "AH 2", box: "box3" },
-
-                // Spring Semester
-                { id: "ENCH 225L", box: "box4" },
-                 { id: "CHEM 351L", box: "box4" },
-                { id: "MATH 225", box: "box4" },
-                 { id: "SCI ELECT", box: "box4" },
-                { id: "AH 3", box: "box4" },
-                { id: "SS 1", box: "box4" },
-
-                // Year Three
-                // Fall Semester
-                { id: "ENCH 300", box: "box5" },
-                { id: "ENCH 425", box: "box5" },
-                { id: "CHEM 301", box: "box5" },
-                { id: "CHEM 311L", box: "box5" },
-                { id: "LANG 201", box: "box5" },
-
-                // Spring Semester
-                // missing this
-                { id: "ENCH 427", box: "box6" },
-                { id: "ENCH 440", box: "box6" },
-                { id: "ENCH 442", box: "box6" },
-                { id: "CHEM 302", box: "box6" },
-                { id: "SS 2", box: "box6" },
-
-                // Year Four
-                // Fall Semester
-                { id: "ENCH 444", box: "box7" },
-                { id: "ENCH 445", box: "box7" },
-                { id: "ENCH 437L", box: "box7" },
-                { id: "ENCH XXX", box: "box7" },
-                { id: "CULTURE", box: "box7" },
-
-                // Spring Semester
-                { id: "ENCH 446", box: "box8" },
-                { id: "ENCH XXX", box: "box8" },
-                { id: "ENCH XXX", box: "box8" },
-                { id: "SS 3", box: "box8" },
-            ];
-
-            for (const { id, box } of plan) {
-                await fetchAndCreateInBox(id, box);
-            }
-        }
-    }
-    async function preplan_ChemE_BT_Courses() {
-        const count = countAllBoxes();
-        if (count > 0) {
-            swal.fire({
-                confirmButtonColor: '#fdb515',
-                customClass: {
-                    confirmButton: 'custom-confirm-button' // Add custom class
-                },
-                icon: 'error',
-                title: 'Pre-Planned Courses Failed to Load',
-                text: 'Courses are already loaded! Please ensure the semesters are empty to avoid conflicts and confusion.',
-            });
-        } else {
-            swal.fire({
-                confirmButtonColor: '#fdb515',
-                customClass: {
-                    confirmButton: 'custom-confirm-button' // Add custom class
-                },
-                icon: 'success',
-                title: 'Chemical Engineering Pre-Planned Courses Being Loaded',
-                timer: 4500,
-            });
-
-            const plan = [
-                // Year One
-                // Fall Semester
-                { id: "CHEM 101", box: "box1" },
-                { id: "MATH 151", box: "box1" },
-                { id: "ENES 101", box: "box1" },
-                { id: "ENGL 100", box: "box1" },
-                { id: "AH 1", box: "box1" },
-
-                // Spring Semester
-                { id: "CHEM 102", box: "box2" },
-                { id: "CHEM 102L", box: "box2" },
-                { id: "PHYS 121", box: "box2" },
-                { id: "MATH 152", box: "box2" },
-                { id: "BIOL 141", box: "box2" },
-
-                // Year Two
-                // Fall Semester
-                { id: "ENCH 215", box: "box3" },
-                { id: "CHEM 351", box: "box3" },
-                { id: "MATH 251", box: "box3" },
-                { id: "BIOL 302", box: "box3" },
-                { id: "AH 2", box: "box3" },
-
-                // Spring Semester
-                { id: "ENCH 225L", box: "box4" },
-                { id: "CHEM 352", box: "box4" },
-                { id: "MATH 225", box: "box4" },
-                { id: "PHYS 122", box: "box4" },
-                { id: "BIOL 303", box: "box4" },
-
-                // Year Three
-                // Fall Semester
-                { id: "ENCH 300", box: "box5" },
-                { id: "ENCH 425", box: "box5" },
-                { id: "CHEM 437", box: "box5" },
-                { id: "LANG 201", box: "box5" },
-                { id: "AH 3", box: "box5" },
-
-                // Spring Semester
-                { id: "ENCH 427", box: "box6" },
-                { id: "ENCH 440", box: "box6" },
-                { id: "ENCH 442", box: "box6" },
-                { id: "CHEM 303", box: "box6" },
-                { id: "SS 1", box: "box6" },
-
-                // Year Four
-                // Fall Semester
-                { id: "ENCH 444", box: "box7" },
-                { id: "ENCH 445", box: "box7" },
-                { id: "ENCH 482", box: "box7" },
-                { id: "ENCH XXX", box: "box7" },
-                { id: "CULTURE", box: "box7" },
-                { id: "SS 2", box: "box7" },
-
-                // Spring Semester
-                { id: "ENCH 446", box: "box8" },
-                { id: "ENCH 485L", box: "box8" },
-                { id: "ENCH XXX", box: "box8" },
-                { id: "SS 3", box: "box8" },
-            ];
-
-            for (const { id, box } of plan) {
-                await fetchAndCreateInBox(id, box);
-            }
-        }
-    }
-
-
     async function compareAcross() {
         console.log("compareAcross() button clicked");
 
@@ -1653,10 +1460,6 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.19.1/dist/sweetalert2.min.css
         document.getElementById('CMPE-CMM-btn').addEventListener('click', preplan_Cmpe_CMM_Courses);
         document.getElementById('CMPE-ES-btn').addEventListener('click', preplan_Cmpe_ES_Courses);
         // Cheme
-        document.getElementById('CHEME-btn').addEventListener('click', preplan_CHME_G_Courses);
-        // document.getElementById('CHEME-BT-btn').addEventListener('click', preplan_ChemE_BT_Courses);
-        // document.getElementById('CHEME-btn').addEventListener('click', preplan_CHME_G_Courses);
-
 
         // MECHE
         document.getElementById('MECHE-btn').addEventListener('click', preplan_MECHE_Courses);

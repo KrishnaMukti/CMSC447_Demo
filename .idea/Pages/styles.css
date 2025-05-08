@@ -48,6 +48,7 @@ body {
 
 /* Ensure text wrapping and centering for navbar items */
 .navbar__item #home-page,
+.navbar__item #about-page,
 .navbar__item #computer_science-page,
 .navbar__item #computer_engineering-page,
 .navbar__item #chemical_engineering-page,

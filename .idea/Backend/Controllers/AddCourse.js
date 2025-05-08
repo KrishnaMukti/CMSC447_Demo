@@ -570,6 +570,8 @@ async function addCourses() {
                 equivData:  []
             },
 
+
+
             {
                 courseId:   "MPLACE5",
                 title:      "Math Placement Test Score: 5",
@@ -577,7 +579,15 @@ async function addCourses() {
                 description:"Equivalent to having completed MATH 150",
                 prereq:     [],
                 equivData:  ["MATH 150"]
+            },{
+                courseId:   "LANG TRNSFR",
+                title:      "Language Equivant of 201 course",
+                credits:    0,
+                description:"Language Equivant of 201 course",
+                prereq:     [],
+                equivData:  ["JAPN 101","JAPN 201","JAPN 102","RUSS 101","RUSS 102","RUSS 201","SPAN 101","SPAN 102","SPAN 201"]
             },
+
 
             {
                 courseId: "MATH 106",
