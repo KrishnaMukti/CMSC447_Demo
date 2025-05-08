@@ -1,0 +1,49 @@
+name: Deploy Static Site to GitHub Pages
+
+on:
+  push:
+    branches: ["main"] # Trigger on pushes to the main branch
+  workflow_dispatch: # Allow manual triggers from the Actions tab
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  # Build job
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout the repository
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Prepare deployment directory
+      - name: Prepare Site
+        run: |
+          mkdir -p ./output
+          cp -r .idea/Pages/* ./output/
+
+      # Upload the prepared files as an artifact
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./output # The prepared site files
+
+  # Deployment job
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      # Deploy the artifact to GitHub Pages
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
